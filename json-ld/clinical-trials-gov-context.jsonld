@@ -1,0 +1,97 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "ctg": "https://clinicaltrials.gov/ns/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Study": {
+      "@id": "ctg:Study",
+      "@context": {
+        "nctId": "ctg:nct_id",
+        "briefTitle": "schema:name",
+        "officialTitle": "ctg:official_title",
+        "overallStatus": "ctg:overall_status",
+        "phase": "ctg:phase",
+        "studyType": "ctg:study_type",
+        "conditions": {
+          "@id": "ctg:conditions",
+          "@container": "@set"
+        },
+        "interventions": {
+          "@id": "ctg:interventions",
+          "@container": "@set"
+        },
+        "leadSponsor": "schema:sponsor",
+        "startDate": {
+          "@id": "ctg:start_date",
+          "@type": "xsd:date"
+        },
+        "completionDate": {
+          "@id": "ctg:completion_date",
+          "@type": "xsd:date"
+        },
+        "lastUpdateDate": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:date"
+        }
+      }
+    },
+
+    "Sponsor": {
+      "@id": "ctg:Sponsor",
+      "@context": {
+        "name": "schema:name",
+        "agencyClass": "ctg:agency_class"
+      }
+    },
+
+    "Intervention": {
+      "@id": "ctg:Intervention",
+      "@context": {
+        "type": "ctg:intervention_type",
+        "name": "schema:name",
+        "description": "schema:description"
+      }
+    },
+
+    "Condition": {
+      "@id": "ctg:Condition",
+      "@context": {
+        "name": "schema:name"
+      }
+    },
+
+    "EligibilityCriteria": {
+      "@id": "ctg:EligibilityCriteria",
+      "@context": {
+        "minimumAge": "ctg:minimum_age",
+        "maximumAge": "ctg:maximum_age",
+        "sex": "schema:gender",
+        "healthyVolunteers": "ctg:healthy_volunteers"
+      }
+    },
+
+    "Location": {
+      "@id": "ctg:Location",
+      "@context": {
+        "facility": "schema:name",
+        "city": "schema:addressLocality",
+        "state": "schema:addressRegion",
+        "country": "schema:addressCountry",
+        "status": "ctg:recruitment_status"
+      }
+    },
+
+    "Outcome": {
+      "@id": "ctg:Outcome",
+      "@context": {
+        "measure": "ctg:measure",
+        "description": "schema:description",
+        "timeFrame": "ctg:time_frame",
+        "type": "ctg:outcome_type"
+      }
+    }
+  }
+}

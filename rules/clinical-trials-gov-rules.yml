@@ -1,0 +1,94 @@
+extends:
+  - spectral:oas
+
+# Spectral linting rules for the ClinicalTrials.gov Data API v2.
+# https://clinicaltrials.gov/data-api/api — open, unauthenticated,
+# JSON-by-default REST API hosted at https://clinicaltrials.gov/api/v2.
+rules:
+  ctg-info-contact:
+    description: API contact information must be present.
+    severity: error
+    given: "$.info"
+    then:
+      field: contact
+      function: truthy
+
+  ctg-info-license:
+    description: API license must be declared.
+    severity: warn
+    given: "$.info"
+    then:
+      field: license
+      function: truthy
+
+  ctg-server-https:
+    description: All server URLs must use HTTPS.
+    severity: error
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+
+  ctg-server-versioned:
+    description: Data API server URL must include /api/v2.
+    severity: warn
+    given: "$.servers[?(@.url && @.url.indexOf('clinicaltrials.gov') > -1)].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "/api/v2$"
+
+  ctg-operation-tags:
+    description: Every operation must declare at least one tag.
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          minItems: 1
+
+  ctg-operation-summary:
+    description: Every operation must include a short summary.
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: summary
+      function: truthy
+
+  ctg-operation-id:
+    description: Every operation must declare a unique operationId.
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: truthy
+
+  ctg-pagination-page-size:
+    description: List endpoints should support pageSize and pageToken parameters.
+    severity: info
+    given: "$.paths[?(@property == '/studies')].get.parameters[*].name"
+    then:
+      function: enumeration
+      functionOptions:
+        values:
+          - pageSize
+          - pageToken
+          - query.term
+          - query.cond
+          - query.intr
+          - query.locn
+          - filter.overallStatus
+          - format
+          - countTotal
+          - fields
+
+  ctg-nct-id-pattern:
+    description: nctId path parameters should match the NCT identifier pattern.
+    severity: warn
+    given: "$.paths[?(@property.match(/{nctId}/))]"
+    then:
+      function: truthy
