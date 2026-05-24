@@ -135,6 +135,8 @@ common:
     url: rules/clinical-trials-gov-rules.yml
   - type: Naftiko Capabilities
     url: capabilities/clinical-trials-gov.yaml
+  - type: LLMsTxt
+    url: https://clinicaltrials.gov/llms.txt
 maintainers:
   - FN: Kin Lane
     email: kinlane@gmail.com
