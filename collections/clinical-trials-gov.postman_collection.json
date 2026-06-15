@@ -1,0 +1,894 @@
+{
+  "item": [
+    {
+      "id": "fc64f8ff-6e12-4e6c-a375-7439ca904337",
+      "name": "Search studies",
+      "request": {
+        "name": "Search studies",
+        "description": {
+          "content": "Retrieve a paginated list of clinical study records. Supports\nfree-text search, filtering, field selection, and pagination via\nnextPageToken.\n",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "studies"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "format",
+              "value": "json",
+              "description": "Response format"
+            },
+            {
+              "disabled": false,
+              "key": "query.term",
+              "value": "<string>",
+              "description": "Free-text search term"
+            },
+            {
+              "disabled": false,
+              "key": "query.cond",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "query.locn",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "query.titles",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "query.intr",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "filter.overallStatus",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "filter.geo",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "fields",
+              "value": "<string>",
+              "description": "Comma-separated list of study fields to return"
+            },
+            {
+              "disabled": false,
+              "key": "pageSize",
+              "value": "10"
+            },
+            {
+              "disabled": false,
+              "key": "pageToken",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "countTotal",
+              "value": "<boolean>"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "e19d7698-c5f8-4c98-9e00-24f52b786942",
+          "name": "Studies page",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "studies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "format",
+                  "value": "json"
+                },
+                {
+                  "key": "query.term",
+                  "value": "<string>"
+                },
+                {
+                  "key": "query.cond",
+                  "value": "<string>"
+                },
+                {
+                  "key": "query.locn",
+                  "value": "<string>"
+                },
+                {
+                  "key": "query.titles",
+                  "value": "<string>"
+                },
+                {
+                  "key": "query.intr",
+                  "value": "<string>"
+                },
+                {
+                  "key": "filter.overallStatus",
+                  "value": "<string>"
+                },
+                {
+                  "key": "filter.geo",
+                  "value": "<string>"
+                },
+                {
+                  "key": "fields",
+                  "value": "<string>"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "10"
+                },
+                {
+                  "key": "pageToken",
+                  "value": "<string>"
+                },
+                {
+                  "key": "countTotal",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"studies\": [\n    {\n      \"protocolSection\": {},\n      \"derivedSection\": {},\n      \"hasResults\": true\n    },\n    {\n      \"protocolSection\": {},\n      \"derivedSection\": {},\n      \"hasResults\": false\n    }\n  ],\n  \"nextPageToken\": \"string\",\n  \"totalCount\": 8627\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "4a316e14-952a-4937-bc5f-30f930debfa0",
+      "name": "Get a study by NCT ID",
+      "request": {
+        "name": "Get a study by NCT ID",
+        "description": {},
+        "url": {
+          "path": [
+            "studies",
+            ":nctId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "format",
+              "value": "json",
+              "description": "Response format"
+            },
+            {
+              "disabled": false,
+              "key": "fields",
+              "value": "<string>",
+              "description": "Comma-separated list of study fields to return"
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "nctId",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "3a6cad7f-39d4-4f61-8233-b02f54317965",
+          "name": "Study record",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "studies",
+                ":nctId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "format",
+                  "value": "json"
+                },
+                {
+                  "key": "fields",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "nctId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"protocolSection\": {},\n  \"derivedSection\": {},\n  \"hasResults\": false\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "a9747454-3357-43db-afc8-c9d4ea80852f",
+          "name": "Study not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "studies",
+                ":nctId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "format",
+                  "value": "json"
+                },
+                {
+                  "key": "fields",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "nctId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "dedea9f0-9e5e-4604-bc24-1b2962f4fb8e",
+      "name": "Get study field metadata",
+      "request": {
+        "name": "Get study field metadata",
+        "description": {},
+        "url": {
+          "path": [
+            "studies",
+            "metadata"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "includeIndexedOnly",
+              "value": "<boolean>"
+            },
+            {
+              "disabled": false,
+              "key": "includeHistoricOnly",
+              "value": "<boolean>"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "3a19c27b-9e86-428a-804c-61602e40a18f",
+          "name": "Study field metadata",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "studies",
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "includeIndexedOnly",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "includeHistoricOnly",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "8283936a-347f-48e7-b728-e03538d90f48",
+      "name": "Get search areas",
+      "request": {
+        "name": "Get search areas",
+        "description": {},
+        "url": {
+          "path": [
+            "studies",
+            "search-areas"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "906d40c2-b6ee-4baa-8976-bfbe04dfb24e",
+          "name": "Search area definitions",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "studies",
+                "search-areas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "0d3b8d3c-c571-46a7-b276-9a4b29ccf86f",
+      "name": "Get controlled-vocabulary enumerations",
+      "request": {
+        "name": "Get controlled-vocabulary enumerations",
+        "description": {},
+        "url": {
+          "path": [
+            "studies",
+            "enums"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "70608230-b5f4-4706-94be-b2aa1732feaf",
+          "name": "Enum values",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "studies",
+                "enums"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "6c3aaae4-f11c-4f5d-8da7-e15687e5c5aa",
+      "name": "Study record sizes",
+      "request": {
+        "name": "Study record sizes",
+        "description": {},
+        "url": {
+          "path": [
+            "stats",
+            "size"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "fd2d86f9-3139-4097-9208-7f086ec3435f",
+          "name": "Size statistics",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "stats",
+                "size"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "6390aa95-8461-4ac9-9e3f-9509143cb7b9",
+      "name": "Field value distribution",
+      "request": {
+        "name": "Field value distribution",
+        "description": {},
+        "url": {
+          "path": [
+            "stats",
+            "field",
+            "values"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "types",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "fields",
+              "value": "<string>"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "4ce25a29-edd6-4674-a4e5-e869b21ee6d0",
+          "name": "Field value statistics",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "stats",
+                "field",
+                "values"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "types",
+                  "value": "<string>"
+                },
+                {
+                  "key": "fields",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "8c88c132-1666-4b97-ab78-003c68d5cba1",
+      "name": "Field size statistics",
+      "request": {
+        "name": "Field size statistics",
+        "description": {},
+        "url": {
+          "path": [
+            "stats",
+            "field",
+            "sizes"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "fields",
+              "value": "<string>"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "99f9e8b2-f6b5-4e7c-832e-b03a37860617",
+          "name": "Field size statistics",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "stats",
+                "field",
+                "sizes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "fields",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "2c64b70b-8b5e-4cf1-8f41-66ba86c25b0e",
+      "name": "API and data version",
+      "request": {
+        "name": "API and data version",
+        "description": {},
+        "url": {
+          "path": [
+            "version"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "77c23380-cf2b-4de8-84a4-72999bbd843a",
+          "name": "Version info",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"apiVersion\": \"string\",\n  \"dataTimestamp\": \"1950-11-30T11:46:42.503Z\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://clinicaltrials.gov/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4ea9478d-3b9e-4fdd-9c44-e717555c9759",
+    "name": "ClinicalTrials.gov Data API v2",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ClinicalTrials.gov Data API v2 is a public REST API operated by the\nU.S. National Library of Medicine (NIH). It returns study records,\nmetadata, statistics, search areas, and enumerations as JSON. Data is in\nthe public domain and no authentication is required.\n",
+      "type": "text/plain"
+    }
+  }
+}
