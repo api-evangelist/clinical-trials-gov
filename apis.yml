@@ -7,7 +7,7 @@ description: >-
   search areas, and field definitions in JSON. The predecessor classic API remains available for legacy consumers but is
   being phased out in favor of the v2 API. Data is in the public domain and freely accessible without authentication.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/clinical-trials-gov/refs/heads/main/apis.yml
 created: '2024-01-01'
 modified: '2026-04-23'
@@ -29,7 +29,7 @@ apis:
       - REST
       - Search
       - Studies
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://clinicaltrials.gov/api/v2
     humanURL: https://clinicaltrials.gov/data-api/api
     properties:
@@ -51,7 +51,7 @@ apis:
       - Clinical Trials
       - Legacy
       - REST
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://clinicaltrials.gov/api
     humanURL: https://clinicaltrials.gov/data-api/api
     properties:
@@ -67,7 +67,7 @@ apis:
       - Bulk
       - Datasets
       - Open Data
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://clinicaltrials.gov/data-api/about-api/csv-download
     properties:
       - url: https://clinicaltrials.gov/data-api/about-api/csv-download
@@ -83,7 +83,7 @@ apis:
       - Database
       - Postgres
       - Research
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://aact.ctti-clinicaltrials.org/
     properties:
       - url: https://aact.ctti-clinicaltrials.org/
