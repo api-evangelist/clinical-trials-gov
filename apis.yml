@@ -119,7 +119,7 @@ common:
     url: json-ld/clinical-trials-gov-context.jsonld
   - type: Spectral
     url: rules/clinical-trials-gov-rules.yml
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://clinicaltrials.gov/llms.txt
 maintainers:
   - FN: Kin Lane
