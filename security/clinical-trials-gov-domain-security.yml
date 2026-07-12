@@ -1,0 +1,31 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: clinicaltrials.gov
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 26 14:32:09 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: aact.ctti-clinicaltrials.org
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 21 06:43:37 2026 GMT
+  hsts: false
+domains:
+- domain: clinicaltrials.gov
+  dnssec: true
+  caa:
+  - 0 issue "godaddy.com"
+  - 0 issuewild "letsencrypt.org"
+  - 0 issue "letsencrypt.org"
+  - 0 issuewild "godaddy.com"
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
+- domain: ctti-clinicaltrials.org
+  dnssec: false
+  caa: []
+  spf: false
+  dmarc: false

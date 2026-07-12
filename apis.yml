@@ -95,6 +95,8 @@ apis:
       ClinicalTrials.gov study content maintained by the Clinical Trials Transformation Initiative (CTTI) at Duke
       University. It is updated daily and is widely used by researchers as a SQL-friendly mirror of the registry.
 common:
+  - type: DomainSecurity
+    url: security/clinical-trials-gov-domain-security.yml
   - type: Website
     url: https://clinicaltrials.gov/
   - type: About
