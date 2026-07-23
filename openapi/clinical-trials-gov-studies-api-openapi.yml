@@ -1,0 +1,205 @@
+openapi: 3.1.0
+info:
+  title: ClinicalTrials.gov Data API v2 Stats Studies API
+  description: 'The ClinicalTrials.gov Data API v2 is a public REST API operated by the
+
+    U.S. National Library of Medicine (NIH). It returns study records,
+
+    metadata, statistics, search areas, and enumerations as JSON. Data is in
+
+    the public domain and no authentication is required.
+
+    '
+  version: 2.0.0
+servers:
+- url: https://clinicaltrials.gov/api/v2
+  description: ClinicalTrials.gov Data API v2 production
+tags:
+- name: Studies
+paths:
+  /studies:
+    get:
+      summary: Search studies
+      description: 'Retrieve a paginated list of clinical study records. Supports
+
+        free-text search, filtering, field selection, and pagination via
+
+        nextPageToken.
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/Format'
+      - $ref: '#/components/parameters/Query'
+      - name: query.cond
+        in: query
+        schema:
+          type: string
+      - name: query.locn
+        in: query
+        schema:
+          type: string
+      - name: query.titles
+        in: query
+        schema:
+          type: string
+      - name: query.intr
+        in: query
+        schema:
+          type: string
+      - name: filter.overallStatus
+        in: query
+        schema:
+          type: string
+      - name: filter.geo
+        in: query
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageToken'
+      - name: countTotal
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Studies page
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudiesResponse'
+            text/csv:
+              schema:
+                type: string
+      tags:
+      - Studies
+  /studies/{nctId}:
+    get:
+      summary: Get a study by NCT ID
+      parameters:
+      - name: nctId
+        in: path
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Format'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Study record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Study'
+        '404':
+          description: Study not found
+      tags:
+      - Studies
+  /studies/metadata:
+    get:
+      summary: Get study field metadata
+      parameters:
+      - name: includeIndexedOnly
+        in: query
+        schema:
+          type: boolean
+      - name: includeHistoricOnly
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Study field metadata
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+      tags:
+      - Studies
+  /studies/search-areas:
+    get:
+      summary: Get search areas
+      responses:
+        '200':
+          description: Search area definitions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+      tags:
+      - Studies
+  /studies/enums:
+    get:
+      summary: Get controlled-vocabulary enumerations
+      responses:
+        '200':
+          description: Enum values
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+      tags:
+      - Studies
+components:
+  schemas:
+    StudiesResponse:
+      type: object
+      properties:
+        studies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Study'
+        nextPageToken:
+          type: string
+        totalCount:
+          type: integer
+    Study:
+      type: object
+      properties:
+        protocolSection:
+          type: object
+        derivedSection:
+          type: object
+        hasResults:
+          type: boolean
+  parameters:
+    Format:
+      name: format
+      in: query
+      description: Response format
+      schema:
+        type: string
+        enum:
+        - json
+        - csv
+        default: json
+    PageSize:
+      name: pageSize
+      in: query
+      schema:
+        type: integer
+        default: 10
+        maximum: 1000
+    Query:
+      name: query.term
+      in: query
+      description: Free-text search term
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of study fields to return
+      schema:
+        type: string
+    PageToken:
+      name: pageToken
+      in: query
+      schema:
+        type: string

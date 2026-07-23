@@ -1,0 +1,37 @@
+openapi: 3.1.0
+info:
+  title: ClinicalTrials.gov Data API v2 Stats Version API
+  description: 'The ClinicalTrials.gov Data API v2 is a public REST API operated by the
+
+    U.S. National Library of Medicine (NIH). It returns study records,
+
+    metadata, statistics, search areas, and enumerations as JSON. Data is in
+
+    the public domain and no authentication is required.
+
+    '
+  version: 2.0.0
+servers:
+- url: https://clinicaltrials.gov/api/v2
+  description: ClinicalTrials.gov Data API v2 production
+tags:
+- name: Version
+paths:
+  /version:
+    get:
+      summary: API and data version
+      responses:
+        '200':
+          description: Version info
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apiVersion:
+                    type: string
+                  dataTimestamp:
+                    type: string
+                    format: date-time
+      tags:
+      - Version
