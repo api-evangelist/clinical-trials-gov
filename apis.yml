@@ -7,7 +7,18 @@ description: >-
   search areas, and field definitions in JSON. The predecessor classic API remains available for legacy consumers but is
   being phased out in favor of the v2 API. Data is in the public domain and freely accessible without authentication.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/clinical-trials-gov.png
 url: https://raw.githubusercontent.com/api-evangelist/clinical-trials-gov/refs/heads/main/apis.yml
 created: '2024-01-01'
 modified: '2026-04-23'
@@ -22,78 +33,99 @@ tags:
   - Public Health
   - Research
 apis:
-  - aid: clinical-trials-gov:data-api-v2
-    name: ClinicalTrials.gov Data API v2
-    tags:
-      - Clinical Trials
-      - REST
-      - Search
-      - Studies
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    baseURL: https://clinicaltrials.gov/api/v2
-    humanURL: https://clinicaltrials.gov/data-api/api
-    properties:
-      - url: https://clinicaltrials.gov/data-api/api
-        type: Documentation
-      - url: https://clinicaltrials.gov/data-api/about-api
-        type: About
-      - url: openapi/clinical-trials-gov-data-api-v2-openapi.yml
-        type: OpenAPI
-    description: >-
-      The ClinicalTrials.gov Data API v2 is the modern public REST interface to the NIH clinical-studies registry. It
-      exposes study records, study metadata, search areas, study fields, version history, and statistics endpoints.
-      Responses are JSON by default and the API is open and unauthenticated. The base URL is
-      https://clinicaltrials.gov/api/v2 and operations include /studies, /studies/{nctId}, /studies/metadata,
-      /studies/search-areas, /studies/enums, /version, and /stats.
-  - aid: clinical-trials-gov:classic-api
-    name: ClinicalTrials.gov Classic API
-    tags:
-      - Clinical Trials
-      - Legacy
-      - REST
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    baseURL: https://clinicaltrials.gov/api
-    humanURL: https://clinicaltrials.gov/data-api/api
-    properties:
-      - url: https://clinicaltrials.gov/data-api/api
-        type: Documentation
-    description: >-
-      The Classic API is the legacy ClinicalTrials.gov interface that preceded the Data API v2 and exposes full-study,
-      brief-study, and field-values endpoints with XML, JSON, and CSV responses. It is being deprecated in favor of the
-      v2 REST API and remains online for backward compatibility while consumers migrate.
-  - aid: clinical-trials-gov:bulk-downloads
-    name: ClinicalTrials.gov Bulk Downloads
-    tags:
-      - Bulk
-      - Datasets
-      - Open Data
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://clinicaltrials.gov/data-api/about-api/csv-download
-    properties:
-      - url: https://clinicaltrials.gov/data-api/about-api/csv-download
-        type: Documentation
-    description: >-
-      ClinicalTrials.gov provides bulk CSV and JSON downloads of the full study registry through the data-api download
-      endpoints. These artifacts support large-scale analytics, archival, and offline mirrors of the registry without
-      making per-record API calls.
-  - aid: clinical-trials-gov:aact
-    name: AACT Database
-    tags:
-      - Analytics
-      - Database
-      - Postgres
-      - Research
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://aact.ctti-clinicaltrials.org/
-    properties:
-      - url: https://aact.ctti-clinicaltrials.org/
-        type: Documentation
-      - url: https://aact.ctti-clinicaltrials.org/data_dictionary
-        type: Data Dictionary
-    description: >-
-      AACT (Aggregate Analysis of ClinicalTrials.gov) is a publicly available relational database of all
-      ClinicalTrials.gov study content maintained by the Clinical Trials Transformation Initiative (CTTI) at Duke
-      University. It is updated daily and is widely used by researchers as a SQL-friendly mirror of the registry.
+- aid: clinical-trials-gov:classic-api
+  name: ClinicalTrials.gov Classic API
+  tags:
+  - Clinical Trials
+  - Legacy
+  - REST
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  baseURL: https://clinicaltrials.gov/api
+  humanURL: https://clinicaltrials.gov/data-api/api
+  properties:
+  - url: https://clinicaltrials.gov/data-api/api
+    type: Documentation
+  description: >-
+    The Classic API is the legacy ClinicalTrials.gov interface that preceded the Data API v2 and exposes
+    full-study, brief-study, and field-values endpoints with XML, JSON, and CSV responses. It is being
+    deprecated in favor of the v2 REST API and remains online for backward compatibility while consumers
+    migrate.
+- aid: clinical-trials-gov:bulk-downloads
+  name: ClinicalTrials.gov Bulk Downloads
+  tags:
+  - Bulk
+  - Datasets
+  - Open Data
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://clinicaltrials.gov/data-api/about-api/csv-download
+  properties:
+  - url: https://clinicaltrials.gov/data-api/about-api/csv-download
+    type: Documentation
+  description: >-
+    ClinicalTrials.gov provides bulk CSV and JSON downloads of the full study registry through the data-api
+    download endpoints. These artifacts support large-scale analytics, archival, and offline mirrors of
+    the registry without making per-record API calls.
+- aid: clinical-trials-gov:aact
+  name: AACT Database
+  tags:
+  - Analytics
+  - Database
+  - Postgres
+  - Research
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://aact.ctti-clinicaltrials.org/
+  properties:
+  - url: https://aact.ctti-clinicaltrials.org/
+    type: Documentation
+  - url: https://aact.ctti-clinicaltrials.org/data_dictionary
+    type: Data Dictionary
+  description: >-
+    AACT (Aggregate Analysis of ClinicalTrials.gov) is a publicly available relational database of all
+    ClinicalTrials.gov study content maintained by the Clinical Trials Transformation Initiative (CTTI)
+    at Duke University. It is updated daily and is widely used by researchers as a SQL-friendly mirror
+    of the registry.
+- aid: clinical-trials-gov:clinical-trials-gov-stats-api
+  name: ClinicalTrials.gov Stats API
+  description: The Stats API from ClinicalTrials.gov — 3 operation(s) for stats.
+  humanURL: https://clinicaltrials.gov/data-api/api
+  baseURL: https://clinicaltrials.gov/api/v2
+  tags:
+  - Stats
+  properties:
+  - type: OpenAPI
+    url: openapi/clinical-trials-gov-stats-api-openapi.yml
+  - type: Documentation
+    url: https://clinicaltrials.gov/data-api/api
+  - type: About
+    url: https://clinicaltrials.gov/data-api/about-api
+- aid: clinical-trials-gov:clinical-trials-gov-studies-api
+  name: ClinicalTrials.gov Studies API
+  description: The Studies API from ClinicalTrials.gov — 5 operation(s) for studies.
+  humanURL: https://clinicaltrials.gov/data-api/api
+  baseURL: https://clinicaltrials.gov/api/v2
+  tags:
+  - Studies
+  properties:
+  - type: OpenAPI
+    url: openapi/clinical-trials-gov-studies-api-openapi.yml
+  - type: Documentation
+    url: https://clinicaltrials.gov/data-api/api
+  - type: About
+    url: https://clinicaltrials.gov/data-api/about-api
+- aid: clinical-trials-gov:clinical-trials-gov-version-api
+  name: ClinicalTrials.gov Version API
+  description: The Version API from ClinicalTrials.gov — 1 operation(s) for version.
+  humanURL: https://clinicaltrials.gov/data-api/api
+  baseURL: https://clinicaltrials.gov/api/v2
+  tags:
+  - Version
+  properties:
+  - type: OpenAPI
+    url: openapi/clinical-trials-gov-version-api-openapi.yml
+  - type: Documentation
+    url: https://clinicaltrials.gov/data-api/api
+  - type: About
+    url: https://clinicaltrials.gov/data-api/about-api
 common:
   - type: AgenticAccess
     url: agentic-access/clinical-trials-gov-agentic-access.yml
