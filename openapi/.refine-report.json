@@ -1,0 +1,18 @@
+{
+  "provider": "clinical-trials-gov",
+  "sources": [
+    "clinical-trials-gov-stats-api-openapi.yml",
+    "clinical-trials-gov-studies-api-openapi.yml",
+    "clinical-trials-gov-version-api-openapi.yml"
+  ],
+  "outputs": [
+    "clinical-trials-gov-stats-api-openapi.yml",
+    "clinical-trials-gov-studies-api-openapi.yml",
+    "clinical-trials-gov-version-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
