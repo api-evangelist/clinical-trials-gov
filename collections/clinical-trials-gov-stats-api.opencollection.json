@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ClinicalTrials.gov Data API v2 Stats API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Stats",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Study record sizes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://clinicaltrials.gov/api/v2/stats/size"
+          },
+          "docs": "Study record sizes"
+        },
+        {
+          "info": {
+            "name": "Field value distribution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://clinicaltrials.gov/api/v2/stats/field/values",
+            "params": [
+              {
+                "name": "types",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Field value distribution"
+        },
+        {
+          "info": {
+            "name": "Field size statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://clinicaltrials.gov/api/v2/stats/field/sizes",
+            "params": [
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Field size statistics"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

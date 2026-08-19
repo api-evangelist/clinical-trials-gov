@@ -1,0 +1,99 @@
+{
+  "item": [
+    {
+      "id": "b42d460b-05f2-40f3-b9bb-4a721cd41869",
+      "name": "Version",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "91deabdb-a079-4c3c-ab16-6cacad418599",
+          "name": "API and data version",
+          "request": {
+            "name": "API and data version",
+            "description": {},
+            "url": {
+              "path": [
+                "version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dc336a91-9293-4c02-b519-6dc129988d49",
+              "name": "Version info",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"string\",\n  \"dataTimestamp\": \"2016-12-04T04:38:32.574Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://clinicaltrials.gov/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3121a0b2-d48b-42d9-9253-3f380be98dfa",
+    "name": "ClinicalTrials.gov Data API v2 Stats Version API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ClinicalTrials.gov Data API v2 is a public REST API operated by the\nU.S. National Library of Medicine (NIH). It returns study records,\nmetadata, statistics, search areas, and enumerations as JSON. Data is in\nthe public domain and no authentication is required.\n",
+      "type": "text/plain"
+    }
+  }
+}

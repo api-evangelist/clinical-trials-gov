@@ -1,0 +1,169 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ClinicalTrials.gov Data API v2 Stats Studies API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Studies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search studies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://clinicaltrials.gov/api/v2/studies",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "query.term",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search term"
+              },
+              {
+                "name": "query.cond",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "query.locn",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "query.titles",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "query.intr",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter.overallStatus",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter.geo",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of study fields to return"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "countTotal",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of clinical study records. Supports\nfree-text search, filtering, field selection, and pagination via\nnextPageToken.\n"
+        },
+        {
+          "info": {
+            "name": "Get a study by NCT ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://clinicaltrials.gov/api/v2/studies/:nctId",
+            "params": [
+              {
+                "name": "nctId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of study fields to return"
+              }
+            ]
+          },
+          "docs": "Get a study by NCT ID"
+        },
+        {
+          "info": {
+            "name": "Get study field metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://clinicaltrials.gov/api/v2/studies/metadata",
+            "params": [
+              {
+                "name": "includeIndexedOnly",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeHistoricOnly",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get study field metadata"
+        },
+        {
+          "info": {
+            "name": "Get search areas",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://clinicaltrials.gov/api/v2/studies/search-areas"
+          },
+          "docs": "Get search areas"
+        },
+        {
+          "info": {
+            "name": "Get controlled-vocabulary enumerations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://clinicaltrials.gov/api/v2/studies/enums"
+          },
+          "docs": "Get controlled-vocabulary enumerations"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

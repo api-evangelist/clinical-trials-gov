@@ -1,0 +1,274 @@
+{
+  "item": [
+    {
+      "id": "0552f3fe-5002-4c72-bdb9-a8332d0af017",
+      "name": "Stats",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2de09193-5155-4000-b93b-47413d6fccf4",
+          "name": "Study record sizes",
+          "request": {
+            "name": "Study record sizes",
+            "description": {},
+            "url": {
+              "path": [
+                "stats",
+                "size"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "20db8962-9a48-4428-bdff-e21b08b9c957",
+              "name": "Size statistics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    "size"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5f09c125-8154-4813-b82d-d7c7ea9fedb8",
+          "name": "Field value distribution",
+          "request": {
+            "name": "Field value distribution",
+            "description": {},
+            "url": {
+              "path": [
+                "stats",
+                "field",
+                "values"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "types",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b6a0976-171c-4a33-815d-b7501b582b83",
+              "name": "Field value statistics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    "field",
+                    "values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bfd113f8-5100-45ab-9260-fe770b2fbbe5",
+          "name": "Field size statistics",
+          "request": {
+            "name": "Field size statistics",
+            "description": {},
+            "url": {
+              "path": [
+                "stats",
+                "field",
+                "sizes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3238472d-3eee-43ed-9ed1-204da4cb6b92",
+              "name": "Field size statistics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    "field",
+                    "sizes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://clinicaltrials.gov/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "46a98bde-e683-469a-88e6-0e825aee4d8c",
+    "name": "ClinicalTrials.gov Data API v2 Stats API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ClinicalTrials.gov Data API v2 is a public REST API operated by the\nU.S. National Library of Medicine (NIH). It returns study records,\nmetadata, statistics, search areas, and enumerations as JSON. Data is in\nthe public domain and no authentication is required.\n",
+      "type": "text/plain"
+    }
+  }
+}
