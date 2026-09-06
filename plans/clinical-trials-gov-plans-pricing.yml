@@ -1,0 +1,32 @@
+generated: '2026-09-06'
+method: searched
+source: https://clinicaltrials.gov/about-site/terms-conditions
+plan_count: 1
+pricing_model: free-public-service
+note: >-
+  ClinicalTrials.gov publishes no commercial pricing because it is a U.S. Government public
+  data service, not a product. There are no tiers, no metering, no quota purchase and no
+  enterprise contact-sales path. This is a genuine zero-cost plan, not an undisclosed one —
+  the terms state it explicitly.
+plans:
+- name: Public access
+  price: 0
+  currency: USD
+  billing_period: none
+  quota: unlimited
+  quota_note: >-
+    No published request quota, no per-key allowance and no metering. The only pace signal
+    published anywhere is "Crawl-delay: 1" in https://clinicaltrials.gov/robots.txt, which
+    addresses crawlers rather than API clients (and the same file disallows /api/ to
+    crawlers). See rate-limits/clinical-trials-gov-rate-limits.yml.
+  overage: none
+  limits:
+    page_size_max: 1000
+    page_size_default: 10
+    limits_source: openapi/_original/clinical-trials-gov-openapi.yml components.parameters.PageSize
+  onboarding: none
+  signup_required: false
+  evidence: >-
+    "ClinicalTrials.gov data are available to all requesters, both within and outside the
+    United States, at no charge." — https://clinicaltrials.gov/about-site/terms-conditions
+    (probed 2026-09-06, HTTP 200)

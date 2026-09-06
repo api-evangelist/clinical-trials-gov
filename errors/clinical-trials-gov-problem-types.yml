@@ -1,0 +1,64 @@
+generated: '2026-09-06'
+method: derived
+source: openapi/_original/clinical-trials-gov-openapi.yml (4xx/5xx responses) + live probes of https://clinicaltrials.gov/api/v2
+format: none
+format_note: >-
+  NOT RFC 9457. No application/problem+json media type appears anywhere in the contract, and
+  the live API returns bare JSON or an empty body on error. There is no documented error
+  reference page on clinicaltrials.gov/data-api, so titles and remediation below are derived
+  from the contract and from observed responses only.
+envelope:
+  media_type: application/json
+  shape: >-
+    Undocumented. GET /studies/{nctId} declares a 404 with no response schema; other
+    operations declare only 200. No machine-readable error envelope is published.
+problem_types:
+- code: '404'
+  operations:
+  - GET /studies/{nctId}
+  title: Study not found
+  meaning: >-
+    No study record exists for the supplied NCT identifier, or the identifier is malformed.
+    Since API version 2.0.2 the operation also follows NCTIdAlias redirects, so a 404 means
+    no alias resolved either.
+  remediation: >-
+    Verify the NCT number (format NCT followed by 8 digits). Resolve historical identifiers
+    via GET /studies with query.term set to the old identifier before retrying.
+  evidence: openapi/_original/clinical-trials-gov-openapi.yml paths./studies/{nctId}.get.responses.404
+- code: '404'
+  operations:
+  - any path under /api/ not served by the v2 API
+  title: Unknown API path
+  meaning: >-
+    nginx returns an HTML 404 page (text/html, 555 bytes, "nginx/1.26.2" footer) rather than
+    JSON. Notably this is what every CLASSIC API path now returns after the June 2024
+    retirement.
+  remediation: Migrate to the v2 paths under https://clinicaltrials.gov/api/v2.
+  evidence: 'probed 2026-09-06: GET https://clinicaltrials.gov/api/query/full_studies?expr=cancer&fmt=json -> 404 text/html'
+- code: '400'
+  operations:
+  - GET /studies/download
+  - any v2 operation given an unrecognised parameter prefix
+  title: Invalid request parameter
+  meaning: >-
+    The API rejects a malformed or unrecognised parameter with a plain-text message. Observed
+    body: "Invalid prefix in parameter name: query.cond" — Content-Type text/plain, NOT JSON
+    and NOT application/problem+json.
+  remediation: >-
+    Read the message body as text. Check the parameter against the live contract and
+    GET /studies/search-areas before retrying; do not attempt to JSON-parse the response.
+  evidence: >-
+    probed 2026-09-06 — GET https://clinicaltrials.gov/api/v2/studies/download?format=csv&query.cond=cancer&pageSize=1
+    -> HTTP 400, text/plain, 44 bytes.
+  note: >-
+    A JSON API that answers errors in text/plain is a real interoperability hazard: a client
+    that assumes JSON on every response throws on the parse instead of surfacing the message.
+undocumented:
+  note: >-
+    No 400, 401, 403, 429 or 5xx response is DECLARED in the contract. A 400 was nevertheless
+    observed live (above) with a text/plain body, so the published description document
+    understates the error surface. Nothing tells an agent how the API signals throttling, and
+    an out-of-range pageSize is not rejected at all — GET /studies?pageSize=99999 returned
+    HTTP 200 rather than a 400, silently ignoring the declared maximum of 1000.
+  missing_status_codes: ['401', '403', '429', '500', '503']
+  undeclared_but_observed: ['400']

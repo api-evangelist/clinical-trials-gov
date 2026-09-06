@@ -1,0 +1,42 @@
+generated: '2026-09-06'
+method: probed
+source: >-
+  openapi/_original/clinical-trials-gov-openapi.yml (no securitySchemes) plus live
+  unauthenticated probes of https://clinicaltrials.gov/api/v2/* on 2026-09-06
+summary:
+  authentication_required: false
+  scheme_count: 0
+  registration_required: false
+  api_key_required: false
+  oauth: false
+schemes: []
+finding: >-
+  The ClinicalTrials.gov Data API v2 requires no authentication of any kind. No
+  securityScheme is declared in the contract, no credential is requested anywhere on
+  https://clinicaltrials.gov/data-api, and unauthenticated GETs against every documented
+  path return 200 with data. There is no signup, no key issuance and no account.
+evidence:
+- url: https://clinicaltrials.gov/api/v2/studies?pageSize=1
+  status: 200
+  note: unauthenticated, returned a full study record (application/json)
+- url: https://clinicaltrials.gov/api/v2/version
+  status: 200
+  note: unauthenticated
+- url: https://clinicaltrials.gov/api/v2/studies/metadata
+  status: 200
+  note: unauthenticated, 175,633 bytes of field metadata
+- url: https://clinicaltrials.gov/.well-known/oauth-authorization-server
+  status: 200
+  note: SPA HTML shell, not an authorization-server metadata document — no OAuth surface exists
+transport:
+  https_required: true
+  tls_version: TLSv1.3
+  hsts: true
+  note: See security/clinical-trials-gov-domain-security.yml for the full TLS/DNS posture.
+data_rights:
+  note: >-
+    Data is U.S. Government work in the public domain and available "to all requesters, both
+    within and outside the United States, at no charge"
+    (https://clinicaltrials.gov/about-site/terms-conditions). Some records may carry
+    third-party copyright; the terms tell consumers to consult those entities directly.
+    Attribution to NLM and ClinicalTrials.gov is requested.

@@ -20,20 +20,24 @@ deliveryModel:
   generated: '2026-08-28'
   method: derived
 accessModel:
-  pricing: unknown
-  onboarding: unknown
+  pricing: free
+  onboarding: open
   trial: false
-  try_now: false
-  public: false
-  label: Unknown
-  confidence: low
-  source: []
-  generated: '2026-07-22'
+  try_now: true
+  public: true
+  label: Free · Open access
+  confidence: high
+  source:
+  - plans
+  - authentication
+  - rate-limits
+  - security
+  generated: '2026-09-06'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/clinical-trials-gov.png
 url: https://raw.githubusercontent.com/api-evangelist/clinical-trials-gov/refs/heads/main/apis.yml
 created: '2024-01-01'
-modified: '2026-04-23'
+modified: '2026-09-06'
 specificationVersion: '0.23'
 kind: government
 tags:
@@ -57,8 +61,15 @@ apis:
   properties:
   - url: https://clinicaltrials.gov/data-api/api
     type: Documentation
+  - url: https://clinicaltrials.gov/data-api/about-api/api-migration
+    type: Deprecation
+  - url: lifecycle/clinical-trials-gov-lifecycle.yml
+    type: Lifecycle
   description: >-
-    The Classic API is the legacy ClinicalTrials.gov interface that preceded the Data API v2 and exposes
+    RETIRED. The Classic API was withdrawn in June 2024 and its endpoints now return HTTP 404
+    (probed 2026-09-06: /api/query/full_studies and /api/info/data_vrs both 404). It is
+    retained here only so consumers of the legacy surface can find the migration path.
+    Originally the legacy ClinicalTrials.gov interface that preceded the Data API v2 and exposes
     full-study, brief-study, and field-values endpoints with XML, JSON, and CSV responses. It is being
     deprecated in favor of the v2 REST API and remains online for backward compatibility while consumers
     migrate.
@@ -70,6 +81,7 @@ apis:
   - Open Data
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://clinicaltrials.gov/data-api/about-api/csv-download
+  baseURL: https://clinicaltrials.gov/api/v2
   properties:
   - url: https://clinicaltrials.gov/data-api/about-api/csv-download
     type: Documentation
@@ -90,7 +102,7 @@ apis:
   - url: https://aact.ctti-clinicaltrials.org/
     type: Documentation
   - url: https://aact.ctti-clinicaltrials.org/data_dictionary
-    type: Data Dictionary
+    type: DataModel
   description: >-
     AACT (Aggregate Analysis of ClinicalTrials.gov) is a publicly available relational database of all
     ClinicalTrials.gov study content maintained by the Clinical Trials Transformation Initiative (CTTI)
@@ -100,6 +112,7 @@ apis:
   name: ClinicalTrials.gov Stats API
   description: The Stats API from ClinicalTrials.gov — 3 operation(s) for stats.
   humanURL: https://clinicaltrials.gov/data-api/api
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://clinicaltrials.gov/api/v2
   tags:
   - Stats
@@ -110,10 +123,13 @@ apis:
     url: https://clinicaltrials.gov/data-api/api
   - type: About
     url: https://clinicaltrials.gov/data-api/about-api
+  - type: Overlay
+    url: overlays/clinical-trials-gov-stats-api-overlay.yaml
 - aid: clinical-trials-gov:clinical-trials-gov-studies-api
   name: ClinicalTrials.gov Studies API
   description: The Studies API from ClinicalTrials.gov — 5 operation(s) for studies.
   humanURL: https://clinicaltrials.gov/data-api/api
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://clinicaltrials.gov/api/v2
   tags:
   - Studies
@@ -124,10 +140,13 @@ apis:
     url: https://clinicaltrials.gov/data-api/api
   - type: About
     url: https://clinicaltrials.gov/data-api/about-api
+  - type: Overlay
+    url: overlays/clinical-trials-gov-studies-api-overlay.yaml
 - aid: clinical-trials-gov:clinical-trials-gov-version-api
   name: ClinicalTrials.gov Version API
   description: The Version API from ClinicalTrials.gov — 1 operation(s) for version.
   humanURL: https://clinicaltrials.gov/data-api/api
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://clinicaltrials.gov/api/v2
   tags:
   - Version
@@ -138,6 +157,8 @@ apis:
     url: https://clinicaltrials.gov/data-api/api
   - type: About
     url: https://clinicaltrials.gov/data-api/about-api
+  - type: Overlay
+    url: overlays/clinical-trials-gov-version-api-overlay.yaml
 common:
   - type: AgenticAccess
     url: agentic-access/clinical-trials-gov-agentic-access.yml
@@ -151,24 +172,62 @@ common:
     url: https://clinicaltrials.gov/data-api/api
   - type: Portal
     url: https://clinicaltrials.gov/data-api
-  - type: Glossary
+  - type: X-Glossary
     url: https://clinicaltrials.gov/study-basics/glossary
-  - type: News
-    url: https://clinicaltrials.gov/about-site/announcements
-  - type: Help
-    url: https://clinicaltrials.gov/help
   - type: PrivacyPolicy
     url: https://www.nlm.nih.gov/privacy.html
   - type: TermsOfService
     url: https://clinicaltrials.gov/about-site/terms-conditions
-  - type: GitHub
-    url: https://github.com/clinicaltrialsgov
   - type: JSONLD
     url: json-ld/clinical-trials-gov-context.jsonld
   - type: Spectral
     url: rules/clinical-trials-gov-rules.yml
-  - type: LlmsText
-    url: https://clinicaltrials.gov/llms.txt
+  - type: APIReference
+    url: https://clinicaltrials.gov/data-api/api
+  - type: GettingStarted
+    url: https://clinicaltrials.gov/data-api/about-api
+  - type: Support
+    url: https://support.nlm.nih.gov/
+  - type: FAQ
+    url: https://clinicaltrials.gov/policy/faq
+  - type: Newsroom
+    url: https://clinicaltrials.gov/about-site/news-and-updates
+  - type: ReleaseNotes
+    url: https://clinicaltrials.gov/about-site/release-notes
+  - type: ChangeLog
+    url: https://clinicaltrials.gov/about-site/release-notes
+  - type: ChangeLog
+    url: changelog/clinical-trials-gov-changelog.yml
+  - type: Deprecation
+    url: https://clinicaltrials.gov/data-api/about-api/api-migration
+  - type: Packages
+    url: packages/clinical-trials-gov-packages.yml
+  - type: MCPServer
+    url: mcp/clinical-trials-gov-mcp.yml
+  - type: Conformance
+    url: conformance/clinical-trials-gov-conformance.yml
+  - type: ErrorCatalog
+    url: errors/clinical-trials-gov-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/clinical-trials-gov-lifecycle.yml
+  - type: Authentication
+    url: authentication/clinical-trials-gov-authentication.yml
+  - type: Conventions
+    url: conventions/clinical-trials-gov-conventions.yml
+  - type: DataModel
+    url: data-model/clinical-trials-gov-data-model.yml
+  - type: Plans
+    url: plans/clinical-trials-gov-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/clinical-trials-gov-rate-limits.yml
+  - type: AgentSkill
+    url: skills/_index.yml
 maintainers:
   - FN: Kin Lane
     email: kinlane@gmail.com
+
+x-enrichment:
+  date: '2026-09-06'
+  status: enriched
+  artifacts_added: 18
+  pass: local-v3

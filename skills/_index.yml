@@ -1,0 +1,26 @@
+generated: '2026-09-06'
+method: generated
+source: >-
+  openapi/clinical-trials-gov-*-openapi.yml plus live probes of
+  https://clinicaltrials.gov/api/v2 on 2026-09-06
+note: >-
+  Grounded in real paths and parameters verified against the live API. The harvested OpenAPI
+  declares no operationId on any path, so each skill names its operations by METHOD + PATH;
+  no identifier was invented.
+skills:
+- name: clinical-trials-gov-find-studies
+  file: clinical-trials-gov-find-studies.md
+  api: clinical-trials-gov:clinical-trials-gov-studies-api
+  operations:
+  - GET /studies
+  - GET /studies/search-areas
+  - GET /studies/enums
+  summary: Search the registry and page through results with the cursor pagination the API actually uses.
+- name: clinical-trials-gov-get-study-record
+  file: clinical-trials-gov-get-study-record.md
+  api: clinical-trials-gov:clinical-trials-gov-studies-api
+  operations:
+  - GET /studies/{nctId}
+  - GET /studies/metadata
+  - GET /version
+  summary: Fetch one study by NCT number in JSON, CSV or HL7 FHIR, with field selection and freshness checking.

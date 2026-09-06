@@ -1,0 +1,72 @@
+generated: '2026-09-06'
+method: derived
+source: openapi/_original/clinical-trials-gov-openapi.yml (candidate tools); web search for an official server
+status: candidate
+name: ClinicalTrials.gov Data API v2 (candidate MCP surface)
+description: >-
+  A CANDIDATE tool list derived from the ClinicalTrials.gov Data API v2 OpenAPI operations.
+  The National Library of Medicine does not publish an MCP server for ClinicalTrials.gov —
+  no hosted endpoint, no NLM-owned package, and no reference to MCP anywhere on
+  clinicaltrials.gov/data-api. Nothing here is an endpoint an agent can call today.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: none
+  verified: derived
+  note: >-
+    mode is none because no first-party server exists. Third-party servers DO exist
+    (clinicaltrialsgov-mcp-server on npm, 2.9.3 / 2026-09-03, by cyanheads; plus several
+    others found on npm) — they are community stdio packages wrapping the same public REST
+    API, and are recorded in packages/clinical-trials-gov-packages.yml. They are NOT this
+    provider's agent surface and no endpoint is asserted for them here.
+authentication:
+  required: false
+  note: >-
+    The underlying REST API is unauthenticated and the data is U.S. Government public
+    domain, so any MCP server over it needs no credential.
+tools:
+- name: search_studies
+  description: Search clinical study records by term, condition, location, intervention, title, status or geography.
+  backing_operation: GET /studies
+  parameters: [format, query.term, query.cond, query.locn, query.titles, query.intr, filter.overallStatus, filter.geo, fields, pageSize, pageToken, countTotal]
+- name: get_study
+  description: Retrieve a single study record by its NCT identifier.
+  backing_operation: GET /studies/{nctId}
+  parameters: [nctId, format, fields]
+- name: get_study_field_metadata
+  description: List every study data field, its type and its position in the study data structure.
+  backing_operation: GET /studies/metadata
+  parameters: [includeIndexedOnly, includeHistoricOnly]
+- name: list_search_areas
+  description: List the named search areas that query.* parameters accept.
+  backing_operation: GET /studies/search-areas
+  parameters: []
+- name: list_enums
+  description: List the controlled-vocabulary enumerations used across study fields.
+  backing_operation: GET /studies/enums
+  parameters: []
+- name: get_study_sizes
+  description: Distribution of study record sizes in the registry.
+  backing_operation: GET /stats/size
+  parameters: []
+- name: get_field_values
+  description: Value distribution statistics for named study fields.
+  backing_operation: GET /stats/field/values
+  parameters: [types, fields]
+- name: get_field_sizes
+  description: Size statistics for named study fields.
+  backing_operation: GET /stats/field/sizes
+  parameters: [fields]
+- name: get_version
+  description: Report the API version and the timestamp of the last data refresh.
+  backing_operation: GET /version
+  parameters: []
+evidence:
+- url: https://clinicaltrials.gov/api/v2/version
+  status: 200
+  note: 'live unauthenticated probe 2026-09-06: apiVersion 2.0.5, dataTimestamp 2026-09-04T09:00:06'
+- url: https://clinicaltrials.gov/data-api
+  status: 200
+  note: developer portal — no MCP server referenced

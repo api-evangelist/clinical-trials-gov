@@ -1,0 +1,66 @@
+generated: '2026-09-06'
+method: searched
+source: >-
+  https://clinicaltrials.gov/about-site/release-notes,
+  https://clinicaltrials.gov/data-api/about-api/api-migration,
+  https://clinicaltrials.gov/api/v2/version (live probe 2026-09-06)
+versioning:
+  scheme: semver-in-path
+  current_version: 2.0.5
+  version_in: path
+  version_pattern: https://clinicaltrials.gov/api/v2
+  discovery_endpoint: https://clinicaltrials.gov/api/v2/version
+  evidence: 'GET https://clinicaltrials.gov/api/v2/version -> 200 {"apiVersion":"2.0.5","dataTimestamp":"2026-09-04T09:00:06"}'
+  note: >-
+    Only the MAJOR version appears in the URL path. Minor releases (2.0.1, 2.0.2 … 2.0.5)
+    ship in place and are announced on the release-notes page; there is no way to pin a
+    minor version and no version header is returned on data responses.
+data_freshness:
+  cadence: daily
+  evidence: >-
+    "ClinicalTrials.gov is updated daily" — https://clinicaltrials.gov/about-site/terms-conditions;
+    the live /version endpoint exposes dataTimestamp (2026-09-04T09:00:06 when probed).
+  note: >-
+    dataTimestamp is the single most useful freshness signal for an agent and is machine-readable.
+deprecation:
+  policy_published: true
+  policy_url: https://clinicaltrials.gov/data-api/about-api/api-migration
+  headers:
+    sunset: false
+    deprecation: false
+    note: >-
+      No RFC 8594 Sunset or Deprecation header was observed on any live response
+      (headers on GET /api/v2/studies checked 2026-09-06).
+  retirements:
+  - api: ClinicalTrials.gov Classic API
+    status: retired
+    announced: '2024-03-19'
+    retired: '2024-06'
+    replacement: https://clinicaltrials.gov/api/v2
+    evidence: >-
+      Release notes announce the classic website and API retirement; probed 2026-09-06,
+      https://clinicaltrials.gov/api/query/full_studies?expr=cancer&fmt=json returns HTTP 404
+      and https://clinicaltrials.gov/api/info/data_vrs returns HTTP 404.
+    note: >-
+      NLM gave roughly a full quarter of public notice plus a written migration guide, and
+      then hard-404'd the surface. Consumers still calling /api/query/* get no Sunset header
+      and no JSON error — only an nginx HTML 404.
+  deprecated_operations: []
+  deprecated_operations_note: >-
+    No operation in any openapi/ document carries `deprecated: true`.
+support:
+  status_page: null
+  status_page_note: >-
+    No status page is published for ClinicalTrials.gov or for NLM (status.nlm.nih.gov does
+    not resolve, checked 2026-09-06). Outages are announced in-page and via the NLM
+    Technical Bulletin.
+  sla: null
+  sla_note: >-
+    No SLA, uptime target or support-response commitment is published. The API is a free
+    U.S. Government public-data service.
+  support_url: https://support.nlm.nih.gov/
+  support_evidence: 'probed 2026-09-06 -> HTTP 200'
+release_notes:
+  url: https://clinicaltrials.gov/about-site/release-notes
+  cadence: irregular, roughly quarterly
+  note: See changelog/clinical-trials-gov-changelog.yml for the structured recent entries.

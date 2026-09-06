@@ -1,0 +1,98 @@
+generated: '2026-09-06'
+method: searched
+source: https://clinicaltrials.gov/about-site/release-notes
+docs: https://clinicaltrials.gov/about-site/release-notes
+news: https://clinicaltrials.gov/about-site/news-and-updates
+scheme: dated-release-notes
+current_version: 2.0.5
+current_version_source: 'https://clinicaltrials.gov/api/v2/version (live probe 2026-09-06)'
+cadence: irregular; roughly quarterly site releases, with API items called out under an "API" heading
+coverage_note: >-
+  The release-notes page carries 97 dated entries reaching back to 1998. Only the API-relevant
+  and recent site entries are structured below. The page is a client-rendered Angular route,
+  so the entries were read from the application's own release-notes content bundle
+  (chunk-BMYXEWAI.js served from clinicaltrials.gov), not from a feed — there is no RSS or
+  JSON changelog.
+entries:
+- date: '2026-06-09'
+  version: null
+  breaking: false
+  additions: true
+  highlights:
+  - New patient/caregiver resources (Common Questions, How to Join a Study) under Find Studies.
+  - New Demonstration Videos page; one outdated video removed.
+  - Content refreshed for How to Search for Clinical Studies and How to Read a Study Record.
+  api_affecting: false
+- date: '2026-03-18'
+  version: null
+  breaking: false
+  additions: true
+  highlights:
+  - 'Studies by Topic view gained Sponsors/Collaborators, Conditions and Interventions/Treatment groupings.'
+  - Search Details bar now groups terms and synonyms by search area.
+  api_affecting: false
+- date: '2026-01-22'
+  version: null
+  breaking: false
+  additions: true
+  highlights:
+  - "The Results Submitted filter can now be applied to the /studies API endpoint via the 'ressub' aggregate filter in the aggFilters field."
+  - Glossary gained an alphabetical navigation bar and a site-wide slide-out drawer.
+  api_affecting: true
+- date: '2025-11-20'
+  version: null
+  breaking: false
+  additions: true
+  highlights:
+  - Map View gained country/state/city hover counts and clickable Show Studies by Region rollups.
+  api_affecting: false
+- date: '2025-09-25'
+  version: null
+  breaking: false
+  additions: true
+  highlights:
+  - Interactive Map View added to the Search Results page.
+  - Search Details now reports per-page and total counts including synonym matches.
+  api_affecting: false
+- date: '2025-04-15'
+  version: null
+  breaking: false
+  additions: true
+  highlights:
+  - Expert Search now generates a search expression from the basic search form.
+  api_affecting: false
+- date: '2024-04-30'
+  version: 2.0.2
+  breaking: false
+  additions: true
+  highlights:
+  - Changed API version to 2.0.2.
+  - GET /studies/{NCTId} now supports redirects to a study record based on NCTIdAlias.
+  - Study Data Structure — Source Type and Source XPath renamed Classic Type and Classic XPath.
+  - API documentation gained content about the schedule of data updates.
+  api_affecting: true
+- date: '2024-03-19'
+  version: 2.0.1
+  breaking: false
+  additions: true
+  highlights:
+  - Changed API version to 2.0.1.
+  - API Migration Guide updated to reflect legacy API endpoint support.
+  - 'Announcement: the v2 API differs from the classic API in several important ways; classic API users strongly encouraged to migrate, with the classic API to be retired in June 2024.'
+  api_affecting: true
+- date: '2024-02-06'
+  version: '2.0'
+  breaking: true
+  additions: true
+  highlights:
+  - First functional release of the ClinicalTrials.gov Data API v2.
+  - API Migration Guide published for classic-API consumers.
+  api_affecting: true
+  note: >-
+    The v2 release is the breaking change in this API's history — the classic API was retired
+    in June 2024 and its paths now return HTTP 404. See lifecycle/clinical-trials-gov-lifecycle.yml.
+unlisted_versions:
+  note: >-
+    Release notes stop calling out API version bumps after 2.0.2, but the live /version
+    endpoint reports 2.0.5. Versions 2.0.3, 2.0.4 and 2.0.5 shipped without a dated
+    release-note entry, so no consumer-readable record of what changed in them exists.

@@ -1,0 +1,106 @@
+generated: '2026-09-06'
+method: probed
+source: >-
+  live probes of https://clinicaltrials.gov/api/v2/*, the FHIR pilot page
+  https://clinicaltrials.gov/data-api/fhir, the terms at
+  https://clinicaltrials.gov/about-site/terms-conditions, and openapi/_original/
+note: >-
+  Assertions below are graded against what the CONTRACT and the live responses say about
+  themselves, not against marketing prose. Where an entry is `conforms: false` it means the
+  surface was checked and the standard is genuinely absent, not that it was not looked for.
+conformance:
+- id: openapi-3.1
+  conforms: true
+  evidence: "openapi/_original/clinical-trials-gov-openapi.yml — `openapi: 3.1.0`"
+  note: >-
+    The catalog's own harvested description document. NLM itself publishes no OpenAPI at
+    any probed location (see `no-published-openapi` below).
+- id: no-published-openapi
+  conforms: false
+  evidence: >-
+    /openapi.json, /openapi.yaml, /swagger.json, /api-docs, /v3/api-docs, /api/v2/openapi,
+    /api/v2/openapi.json, /api/v2/openapi.yaml, /api/v2/swagger.json, /api/v2/api-docs,
+    /api/v2/swagger-ui and /api/v2/swagger-ui/swagger-config all probed 2026-09-06 on
+    clinicaltrials.gov — every one returned nginx 404 or the Angular SPA shell.
+  note: >-
+    The API reference at /data-api/api is a client-rendered Angular page; no machine-readable
+    description document is served from any host this record knows. NLM's own Technical
+    Bulletin (https://www.nlm.nih.gov/pubs/techbull/ma24/ma24_clinicaltrials_api.html) states
+    the API "uses the OpenAPI Specification 3.0 to describe its meta information" — the spec
+    is used internally but never published as a fetchable file, which is precisely the gap
+    that forces every consumer to hand-write a client.
+- id: hl7-fhir
+  conforms: true
+  evidence: >-
+    GET https://clinicaltrials.gov/api/v2/studies/{nctId}?format=fhir.json -> HTTP 200,
+    Content-Type application/fhir+json, body a FHIR Bundle (type: collection) whose entries
+    are ResearchStudy and Group resources; the ResearchStudy carries
+    meta.profile ["http://hl7.org/fhir/uv/ebm/StructureDefinition/study-registry-record"].
+    Documented at https://clinicaltrials.gov/data-api/fhir.
+  note: >-
+    A response-format projection, not a FHIR REST server: there is no /metadata
+    CapabilityStatement and no FHIR search API (probed /api/fhir/metadata,
+    /api/v2/fhir/metadata -> 404). NLM describes it as a pilot project.
+- id: domain-standard-signature
+  conforms: true
+  standard: HL7 FHIR R5 / Evidence-Based Medicine implementation guide — study-registry-record profile
+  evidence: >-
+    meta.profile http://hl7.org/fhir/uv/ebm/StructureDefinition/study-registry-record in the
+    live fhir.json response for NCT00141635, fetched 2026-09-06.
+  note: >-
+    This is the domain standard for the clinical-research market: an EHR or trial-matching
+    system that already speaks FHIR ResearchStudy can consume ClinicalTrials.gov records
+    without a bespoke connector.
+- id: who-ictrp-trial-registration-data-set
+  conforms: true
+  evidence: >-
+    https://clinicaltrials.gov/policy/protocol-definitions — the registry's protocol data
+    elements implement the WHO International Clinical Trials Registry Platform (ICTRP)
+    Trial Registration Data Set; ClinicalTrials.gov is an ICMJE-acceptable and WHO ICTRP
+    primary registry.
+  note: >-
+    Recorded from the provider's own policy pages, not from the contract; confidence medium.
+- id: fdaaa-801
+  conforms: true
+  evidence: >-
+    https://clinicaltrials.gov/policy/fdaaa-801-final-rule and
+    https://clinicaltrials.gov/policy/reporting-requirements — the registry is the statutory
+    reporting surface for FDAAA 801 / 42 CFR Part 11.
+- id: oauth2
+  conforms: false
+  evidence: >-
+    No securitySchemes in any openapi/ document; /.well-known/oauth-authorization-server and
+    /.well-known/oauth-protected-resource return the SPA HTML shell, not metadata
+    (well-known/clinical-trials-gov-well-known.yml). The API is unauthenticated by design.
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration returns the Angular SPA shell, not an OIDC discovery document.
+- id: rfc9457
+  conforms: false
+  evidence: >-
+    No application/problem+json media type appears in any openapi/ document; the only
+    documented error response is a plain 404 on GET /studies/{nctId}.
+- id: pagination
+  conforms: true
+  evidence: >-
+    openapi/_original/ declares pageSize (default 10, max 1000) and pageToken query
+    parameters on GET /studies; responses carry nextPageToken. Opaque-cursor style.
+- id: idempotency
+  conforms: false
+  evidence: >-
+    Not applicable rather than missing — every operation in the contract is a GET; the API
+    has no write surface. See conventions/clinical-trials-gov-conventions.yml.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: >-
+    /.well-known/security.txt on clinicaltrials.gov and www.clinicaltrials.gov returns the
+    SPA HTML shell (HTTP 200, text/html); www.nlm.nih.gov returns 404. No RFC 9116 document
+    is served.
+- id: robots-crawl-policy
+  conforms: true
+  evidence: >-
+    https://clinicaltrials.gov/robots.txt (HTTP 200) — "Disallow: /api/", "Allow: /api/int/",
+    "Allow: /api/seo/", "Crawl-delay: 1", Sitemap https://clinicaltrials.gov/assets/sitemap.xml.
+  note: >-
+    Materially relevant to agents: the public Data API path is disallowed to crawlers while
+    remaining open to direct API clients, and Crawl-delay 1 is the only published pace signal.

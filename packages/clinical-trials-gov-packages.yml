@@ -1,0 +1,62 @@
+generated: '2026-09-06'
+method: searched
+source: >-
+  registry.npmjs.org, pypi.org, github.com and the ClinicalTrials.gov developer pages
+  (https://clinicaltrials.gov/data-api, https://clinicaltrials.gov/data-api/api)
+summary:
+  official_count: 0
+  third_party_count: 4
+  finding: >-
+    The National Library of Medicine publishes NO first-party client library for the
+    ClinicalTrials.gov Data API v2 in any package registry, and the developer pages link
+    to none. The GitHub account the catalog previously pointed at
+    (https://github.com/clinicaltrialsgov) returns HTTP 404 — no NLM-owned source
+    repository for this API exists on GitHub. Every package below is community-built
+    against the public v2 REST API; none is endorsed by NLM/NIH. Recorded so the absence
+    of an official SDK is a measured fact rather than an unchecked gap.
+official_sdks: []
+packages:
+- name: clinicaltrialsgov-mcp-server
+  registry: npm
+  official: false
+  version: 2.9.3
+  published: '2026-09-03'
+  url: https://www.npmjs.com/package/clinicaltrialsgov-mcp-server
+  repository: https://github.com/cyanheads/clinicaltrialsgov-mcp-server
+  language: TypeScript
+  note: >-
+    Community MCP server wrapping the v2 REST API (search, study detail, aggregate
+    statistics). Actively maintained; the most current third-party distribution found.
+- name: '@ncbijs/clinical-trials'
+  registry: npm
+  official: false
+  version: 0.1.1
+  published: '2026-05-06'
+  url: https://www.npmjs.com/package/@ncbijs/clinical-trials
+  repository: https://github.com/gagle/ncbijs
+  language: TypeScript
+  note: >-
+    Typed community client for the v2 API. The "ncbijs" scope is a community project name,
+    not an NCBI/NLM-owned namespace.
+- name: pytrials
+  registry: pypi
+  official: false
+  version: 1.0.0
+  published: '2024-05-01'
+  url: https://pypi.org/project/pytrials/
+  repository: https://github.com/jvfe/pytrials
+  language: Python
+  note: >-
+    The most widely used Python wrapper. Last release predates several API releases
+    (the live API reports version 2.0.5 as of 2026-09-06) — a decay signal for consumers.
+- name: clinical-trials-gov
+  registry: npm
+  official: false
+  version: 1.2.0
+  published: '2018-01-29'
+  url: https://www.npmjs.com/package/clinical-trials-gov
+  repository: https://github.com/arronhunt/clinical-trials-gov
+  language: JavaScript
+  note: >-
+    Abandoned. Written against the CLASSIC ClinicalTrials.gov API, which was retired in
+    June 2024 — /api/query/full_studies now returns HTTP 404. This package cannot work.

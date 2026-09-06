@@ -1,0 +1,40 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for ClinicalTrials.gov version-api
+  version: 1.0.0
+extends: openapi/clinical-trials-gov-version-api-openapi.yml
+x-provenance:
+  generated: '2026-09-06'
+  method: generated
+  source: >-
+    API Evangelist enrichment pass. Every value applied here was read from a live probe of
+    https://clinicaltrials.gov/api/v2 or from the provider's own documentation on
+    2026-09-06 — nothing is asserted that was not observed. The underlying OpenAPI is not
+    mutated.
+actions:
+- target: $.info
+  update:
+    x-apievangelist-slug: clinical-trials-gov
+    x-api-lifecycle: production
+    x-api-version-live: 2.0.5
+    x-data-refresh-cadence: daily
+    x-authentication: none
+    x-license: U.S. Government public domain (see https://clinicaltrials.gov/about-site/terms-conditions)
+    x-agent-readiness:
+      write_surface: false
+      idempotency: na
+      reversibility: na
+      rate_limit_headers: none
+- target: $.info.contact
+  update:
+    name: NLM Support
+    url: https://support.nlm.nih.gov/
+- target: $
+  update:
+    x-conventions: conventions/clinical-trials-gov-conventions.yml
+    x-error-catalog: errors/clinical-trials-gov-problem-types.yml
+    x-lifecycle: lifecycle/clinical-trials-gov-lifecycle.yml
+    x-authentication-profile: authentication/clinical-trials-gov-authentication.yml
+    x-rate-limits: rate-limits/clinical-trials-gov-rate-limits.yml
+    x-data-model: data-model/clinical-trials-gov-data-model.yml
+    x-conformance: conformance/clinical-trials-gov-conformance.yml

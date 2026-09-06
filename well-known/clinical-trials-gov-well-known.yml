@@ -1,0 +1,108 @@
+generated: '2026-09-06'
+method: probed
+source: live HTTPS probes of every host in apis.yml + OpenAPI servers[]
+note: >-
+  Recorded absence. clinicaltrials.gov is an Angular single-page app behind nginx: every
+  /.well-known/* path that the SPA router does not recognise is answered by the app catch-all
+  with HTTP 200 and the 94,295-byte HTML shell (identical bytes to the home page), while paths
+  nginx handles directly return a real 404. NONE of the 200s carries a document, so no
+  WellKnown or SecurityTxt pointer is emitted. aact.ctti-clinicaltrials.org (the CTTI mirror)
+  returns honest 404s on every path. No OAuth surface exists because the API is unauthenticated.
+hosts:
+- host: clinicaltrials.gov
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: null
+    note: SPA HTML shell (text/html, 94295 bytes) — not a document; treated as a miss
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: null
+    note: SPA HTML shell — not a document; treated as a miss
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: null
+    note: SPA HTML shell — not a document; treated as a miss
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: null
+    note: SPA HTML shell — not a document; treated as a miss
+  - path: /.well-known/api-catalog
+    status: 200
+    file: null
+    note: SPA HTML shell — not a document; treated as a miss
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: www.clinicaltrials.gov
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: null
+    note: SPA HTML shell — not a document; treated as a miss
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: null
+    note: SPA HTML shell — not a document; treated as a miss
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: null
+    note: SPA HTML shell — not a document; treated as a miss
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: null
+    note: SPA HTML shell — not a document; treated as a miss
+  - path: /.well-known/api-catalog
+    status: 200
+    file: null
+    note: SPA HTML shell — not a document; treated as a miss
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: aact.ctti-clinicaltrials.org
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+related_probes:
+- url: https://www.nlm.nih.gov/.well-known/security.txt
+  status: 404
+  note: parent organisation (NLM) — no security.txt served either
+- url: https://clinicaltrials.gov/robots.txt
+  status: 200
+  note: >-
+    served, and materially relevant: it carries "Disallow: /api/" with "Allow: /api/int/" and
+    "Allow: /api/seo/", plus "Crawl-delay: 1" and a sitemap pointer to /assets/sitemap.xml.

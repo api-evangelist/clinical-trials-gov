@@ -1,0 +1,136 @@
+generated: '2026-09-06'
+method: probed
+source: >-
+  GET https://clinicaltrials.gov/api/v2/studies/metadata (live, 2026-09-06, 175,633 bytes)
+  cross-checked against openapi/_original/clinical-trials-gov-openapi.yml and
+  https://clinicaltrials.gov/data-api/about-api/study-data-structure
+note: >-
+  The harvested OpenAPI declares only two schemas (Study, StudiesResponse) with
+  `protocolSection` and `derivedSection` typed as bare objects, so the real data model is not
+  in the contract at all — it is served, machine-readable, from GET /studies/metadata. That
+  endpoint is the authoritative field dictionary and is what this artifact is derived from.
+  Every entity below was read from that live response, not inferred.
+primary_key:
+  entity: Study
+  field: protocolSection.identificationModule.nctId
+  format: 'NCT followed by 8 digits (e.g. NCT00141635)'
+  aliases: >-
+    NCTIdAlias — historical identifiers. Since API 2.0.2, GET /studies/{nctId} redirects an
+    alias to the current record.
+entities:
+- name: Study
+  description: One registered clinical study record — the single root aggregate of the registry.
+  operations:
+  - GET /studies
+  - GET /studies/{nctId}
+  fields:
+  - hasResults (boolean)
+  relationships:
+  - has_one: ProtocolSection
+    via: protocolSection
+  - has_one: ResultsSection
+    via: resultsSection
+    note: present only when hasResults is true
+  - has_one: AnnotationSection
+    via: annotationSection
+  - has_one: DocumentSection
+    via: documentSection
+  - has_one: DerivedSection
+    via: derivedSection
+- name: ProtocolSection
+  description: What the study intends to do — registered before or during conduct.
+  relationships:
+  - has_one: IdentificationModule
+    via: identificationModule
+    note: carries nctId, orgStudyIdInfo, secondaryIdInfos, organization, brief and official titles
+  - has_one: StatusModule
+    via: statusModule
+    note: overallStatus, start/completion dates, last-update posting
+  - has_one: SponsorCollaboratorsModule
+    via: sponsorCollaboratorsModule
+    note: responsibleParty, leadSponsor, collaborators[]
+  - has_one: OversightModule
+    via: oversightModule
+  - has_one: DescriptionModule
+    via: descriptionModule
+  - has_one: ConditionsModule
+    via: conditionsModule
+  - has_one: DesignModule
+    via: designModule
+    note: study type, phases, enrollment, allocation/masking
+  - has_one: ArmsInterventionsModule
+    via: armsInterventionsModule
+    note: arm groups and the interventions assigned to them
+  - has_one: OutcomesModule
+    via: outcomesModule
+    note: primary and secondary outcome measures as specified
+  - has_one: EligibilityModule
+    via: eligibilityModule
+  - has_one: ContactsLocationsModule
+    via: contactsLocationsModule
+    note: central contacts, overall officials, and locations[] (facility, city, country, geoPoint)
+  - has_one: ReferencesModule
+    via: referencesModule
+    note: citations and links, including PubMed identifiers
+  - has_one: IpdSharingStatementModule
+    via: ipdSharingStatementModule
+- name: ResultsSection
+  description: What the study found — posted after completion, when results were submitted.
+  relationships:
+  - has_one: ParticipantFlowModule
+    via: participantFlowModule
+  - has_one: BaselineCharacteristicsModule
+    via: baselineCharacteristicsModule
+  - has_one: OutcomeMeasuresModule
+    via: outcomeMeasuresModule
+    note: reported outcomes with measurement and statistical-analysis tables
+  - has_one: AdverseEventsModule
+    via: adverseEventsModule
+  - has_one: MoreInfoModule
+    via: moreInfoModule
+- name: AnnotationSection
+  description: Registry annotations attached to the record.
+  relationships:
+  - has_one: AnnotationModule
+    via: annotationModule
+- name: DocumentSection
+  description: Uploaded study documents (protocol, statistical analysis plan, informed consent form).
+  relationships:
+  - has_many: LargeDocument
+    via: documentSection.largeDocumentModule.largeDocs
+- name: DerivedSection
+  description: Fields NLM computes rather than receives from the sponsor.
+  relationships:
+  - has_one: MiscInfoModule
+    via: miscInfoModule
+  - has_one: BrowseModule
+    via: conditionBrowseModule
+    note: MeSH condition terms derived from the record
+  - has_one: BrowseModule
+    via: interventionBrowseModule
+    note: MeSH drug/intervention terms derived from the record
+external_identifier_domains:
+- name: NCT number
+  field: protocolSection.identificationModule.nctId
+  authority: ClinicalTrials.gov / NLM
+- name: MeSH terms
+  field: derivedSection.conditionBrowseModule / interventionBrowseModule
+  authority: NLM Medical Subject Headings
+- name: PubMed ID
+  field: protocolSection.referencesModule.references[].pmid
+  authority: NLM PubMed
+- name: Organization study ID
+  field: protocolSection.identificationModule.orgStudyIdInfo.id
+  authority: the sponsoring organization
+- name: FHIR ResearchStudy
+  field: 'whole record, via ?format=fhir.json'
+  authority: HL7 — profile http://hl7.org/fhir/uv/ebm/StructureDefinition/study-registry-record
+enumerations:
+  endpoint: GET /studies/enums
+  note: controlled vocabularies for status, phase, study type, sex, age group and similar fields
+search_areas:
+  endpoint: GET /studies/search-areas
+  docs: https://clinicaltrials.gov/data-api/about-api/search-areas
+  note: the named areas the query.* parameters target; required to build a non-trivial query
+render: null
+render_note: no subway/ diagram exists in this repo

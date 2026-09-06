@@ -1,0 +1,44 @@
+generated: '2026-09-06'
+method: probed
+source: >-
+  https://clinicaltrials.gov/data-api/about-api and https://clinicaltrials.gov/data-api/api
+  (searched, no limits documented) plus live response-header inspection of
+  https://clinicaltrials.gov/api/v2/studies on 2026-09-06
+limit_count: 0
+note: >-
+  ClinicalTrials.gov publishes NO rate limits for the Data API v2. The developer pages state
+  no request ceiling, no burst allowance and no throttling policy, and the live API returns
+  no rate-limit headers at all. An agent therefore has no runtime signal telling it when it
+  is close to being throttled and no documented status code to expect on exhaustion — it can
+  only discover a limit by hitting one. Recorded as an honest zero.
+limits: []
+response_headers:
+  observed: []
+  checked:
+  - X-RateLimit-Limit
+  - X-RateLimit-Remaining
+  - X-RateLimit-Reset
+  - RateLimit
+  - RateLimit-Policy
+  - Retry-After
+  evidence: >-
+    HEAD/GET https://clinicaltrials.gov/api/v2/studies?pageSize=1 -> 200. Response headers
+    returned were date, server (istio-envoy), strict-transport-security, x-frame-options,
+    content-type, etag, x-envoy-upstream-service-time, set-cookie, x-ua-compatible,
+    x-xss-protection, via, alt-svc. None of the checked rate-limit headers was present.
+exhaustion_status_code: null
+exhaustion_note: >-
+  Undocumented. No 429 response is declared in any openapi/ document and none was observed.
+adjacent_pace_signals:
+- source: https://clinicaltrials.gov/robots.txt
+  status: 200
+  signal: 'Crawl-delay: 1'
+  note: >-
+    The only published pacing number on the domain. It is a crawler directive, and the same
+    file carries "Disallow: /api/" — so it governs indexing bots, not API clients. Recorded
+    because it is the nearest thing to a published throttle, NOT as an API rate limit.
+- source: openapi/_original/clinical-trials-gov-openapi.yml
+  signal: pageSize maximum 1000
+  note: >-
+    A per-response size ceiling, not a rate limit. It does bound how fast a client can drain
+    the registry through GET /studies.

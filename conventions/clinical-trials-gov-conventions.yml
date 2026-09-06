@@ -1,0 +1,127 @@
+generated: '2026-09-06'
+method: searched
+source: >-
+  openapi/_original/clinical-trials-gov-openapi.yml (derived) plus
+  https://clinicaltrials.gov/data-api/about-api/search-areas,
+  https://clinicaltrials.gov/data-api/about-api/study-data-structure,
+  https://clinicaltrials.gov/find-studies/constructing-complex-search-queries and live
+  probes of https://clinicaltrials.gov/api/v2 on 2026-09-06
+surface_shape:
+  read_only: true
+  note: >-
+    Every operation in the contract is a GET. The Data API v2 is a pure read surface —
+    study records are written through the separate PRS (Protocol Registration and Results
+    System), which is an authenticated human web application with no public API. This single
+    fact drives the `na` verdicts on idempotency, dry-run and reversibility below.
+authentication:
+  style: none
+  detail: See authentication/clinical-trials-gov-authentication.yml — no credential of any kind.
+pagination:
+  style: opaque-cursor
+  request_params:
+  - name: pageSize
+    default: 10
+    maximum: 1000
+  - name: pageToken
+    note: opaque continuation token taken from the previous response
+  - name: countTotal
+    note: boolean; ask the API to return the total match count
+  response_fields:
+  - studies
+  - nextPageToken
+  - totalCount
+  note: >-
+    Cursor pagination only. There is no offset/limit form, so a client cannot jump to an
+    arbitrary page — deep traversal is strictly sequential.
+  source: openapi/_original/clinical-trials-gov-openapi.yml
+field_selection:
+  supported: true
+  param: fields
+  detail: >-
+    Comma-separated list of study fields, addressed by the names published at
+    GET /studies/metadata (175,633 bytes of field definitions on the live probe). This is
+    sparse-fieldsets by any other name and is the primary way to keep responses small.
+  expansion: not supported
+content_negotiation:
+  style: query-parameter
+  param: format
+  values:
+  - json
+  - csv
+  - fhir.json
+  detail: >-
+    Format is chosen with a query parameter, not an Accept header. `format=fhir.json` on
+    GET /studies/{nctId} returns Content-Type application/fhir+json carrying an HL7 FHIR
+    Bundle — see conformance/clinical-trials-gov-conformance.yml.
+  note: >-
+    The openapi/ documents declare only json and csv; fhir.json is documented at
+    https://clinicaltrials.gov/data-api/fhir and confirmed by live probe, so the contract
+    understates the real surface.
+query_language:
+  name: Essie expression syntax
+  detail: >-
+    query.* parameters accept Essie expressions (field-scoped terms, boolean operators,
+    proximity and area targeting) rather than plain strings. Search areas are enumerated at
+    GET /studies/search-areas and documented at
+    https://clinicaltrials.gov/data-api/about-api/search-areas.
+  note: >-
+    This is the highest-friction convention on the API for an agent: a naive free-text string
+    works, but the full filter surface (aggFilters, filter.geo, filter.overallStatus) requires
+    reading the search-areas reference first.
+filtering:
+  params:
+  - filter.overallStatus
+  - filter.geo
+  - aggFilters
+  note: >-
+    aggFilters is not in the harvested contract but is documented in the 2026-01-22 release
+    note (the 'ressub' Results Submitted filter) — another place the published description
+    document lags the live API.
+versioning:
+  style: major-version-in-path
+  detail: See lifecycle/clinical-trials-gov-lifecycle.yml.
+error_envelope:
+  shape: undocumented
+  rfc9457: false
+  detail: See errors/clinical-trials-gov-problem-types.yml.
+rate_limit_signaling:
+  headers: none
+  detail: See rate-limits/clinical-trials-gov-rate-limits.yml — no rate-limit headers are returned.
+request_id_tracing:
+  supported: false
+  detail: >-
+    No request-id or correlation header is returned. Responses carry an ETag
+    (e.g. "883b003/0.34.1/mtmq3wmo") which encodes the build, not a per-request identifier,
+    so a consumer reporting a problem to NLM support has nothing to quote.
+caching:
+  etag: true
+  detail: >-
+    An ETag is returned on data responses; no Cache-Control or Last-Modified was observed.
+    Freshness is better tracked through GET /version dataTimestamp than through HTTP caching.
+idempotency:
+  coverage: na
+  mechanism: none
+  scope: []
+  detail: >-
+    Not applicable. The API exposes no mutating operation, so there is nothing to replay-protect.
+    An honest `na` rather than a `none` that would read as a missing safeguard.
+dry_run_mode:
+  supported: na
+  detail: Not applicable — read-only surface, every call is already side-effect free.
+reversibility:
+  grade: na
+  detail: >-
+    Not applicable. There is no write, no state change and therefore nothing for an agent to
+    undo: every operation is a GET returning public-domain data. No cancel/refund/void/restore
+    path exists because no action creates anything to reverse.
+  write_surfaces: []
+  note: >-
+    Study records ARE mutable — but only through the PRS submission system, a separate
+    authenticated human application outside this API's scope. If NLM ever exposed PRS
+    programmatically, reversibility would need re-measuring against that surface.
+cross_links:
+  errors: errors/clinical-trials-gov-problem-types.yml
+  lifecycle: lifecycle/clinical-trials-gov-lifecycle.yml
+  authentication: authentication/clinical-trials-gov-authentication.yml
+  rate_limits: rate-limits/clinical-trials-gov-rate-limits.yml
+  conformance: conformance/clinical-trials-gov-conformance.yml
