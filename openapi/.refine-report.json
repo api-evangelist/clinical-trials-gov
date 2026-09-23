@@ -1,9 +1,7 @@
 {
   "provider": "clinical-trials-gov",
   "sources": [
-    "clinical-trials-gov-stats-api-openapi.yml",
-    "clinical-trials-gov-studies-api-openapi.yml",
-    "clinical-trials-gov-version-api-openapi.yml"
+    "_original/clinical-trials-gov-openapi.yml"
   ],
   "outputs": [
     "clinical-trials-gov-stats-api-openapi.yml",
@@ -14,10 +12,25 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "clinical-trials-gov-stats-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "clinical-trials-gov-studies-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "clinical-trials-gov-version-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "clinical-trials-gov-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "clinical-trials-gov-openapi.yml: tagged paths GET /studies -> Studies",
+    "clinical-trials-gov-openapi.yml: tagged paths GET /studies/{nctId} -> Studies",
+    "clinical-trials-gov-openapi.yml: tagged paths GET /studies/metadata -> Studies",
+    "clinical-trials-gov-openapi.yml: tagged paths GET /studies/search-areas -> Studies",
+    "clinical-trials-gov-openapi.yml: tagged paths GET /studies/enums -> Studies",
+    "clinical-trials-gov-openapi.yml: tagged paths GET /stats/size -> Stats",
+    "clinical-trials-gov-openapi.yml: tagged paths GET /stats/field/values -> Stats",
+    "clinical-trials-gov-openapi.yml: tagged paths GET /stats/field/sizes -> Stats",
+    "clinical-trials-gov-openapi.yml: tagged paths GET /version -> Version",
+    "clinical-trials-gov-openapi.yml: declared missing tag: Stats",
+    "clinical-trials-gov-openapi.yml: declared missing tag: Studies",
+    "clinical-trials-gov-openapi.yml: declared missing tag: Version",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "clinical-trials-gov-stats-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clinical-trials-gov-studies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clinical-trials-gov-version-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

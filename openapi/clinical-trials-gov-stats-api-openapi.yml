@@ -7,9 +7,7 @@ info:
 
     metadata, statistics, search areas, and enumerations as JSON. Data is in
 
-    the public domain and no authentication is required.
-
-    '
+    the public domain and no authentication is required.'
   version: 2.0.0
 servers:
 - url: https://clinicaltrials.gov/api/v2
@@ -29,6 +27,8 @@ paths:
                 type: object
       tags:
       - Stats
+      operationId: getStatsSize
+      x-operation-id-source: derived
   /stats/field/values:
     get:
       summary: Field value distribution
@@ -52,6 +52,8 @@ paths:
                   type: object
       tags:
       - Stats
+      operationId: getStatsFieldValues
+      x-operation-id-source: derived
   /stats/field/sizes:
     get:
       summary: Field size statistics
@@ -71,3 +73,5 @@ paths:
                   type: object
       tags:
       - Stats
+      operationId: getStatsFieldSizes
+      x-operation-id-source: derived
