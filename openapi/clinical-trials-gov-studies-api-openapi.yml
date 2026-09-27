@@ -153,28 +153,14 @@ paths:
       operationId: getStudiesEnums
       x-operation-id-source: derived
 components:
-  schemas:
-    StudiesResponse:
-      type: object
-      properties:
-        studies:
-          type: array
-          items:
-            $ref: '#/components/schemas/Study'
-        nextPageToken:
-          type: string
-        totalCount:
-          type: integer
-    Study:
-      type: object
-      properties:
-        protocolSection:
-          type: object
-        derivedSection:
-          type: object
-        hasResults:
-          type: boolean
   parameters:
+    PageSize:
+      name: pageSize
+      in: query
+      schema:
+        type: integer
+        default: 10
+        maximum: 1000
     Format:
       name: format
       in: query
@@ -202,10 +188,24 @@ components:
       description: Free-text search term
       schema:
         type: string
-    PageSize:
-      name: pageSize
-      in: query
-      schema:
-        type: integer
-        default: 10
-        maximum: 1000
+  schemas:
+    Study:
+      type: object
+      properties:
+        protocolSection:
+          type: object
+        derivedSection:
+          type: object
+        hasResults:
+          type: boolean
+    StudiesResponse:
+      type: object
+      properties:
+        studies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Study'
+        nextPageToken:
+          type: string
+        totalCount:
+          type: integer
