@@ -153,6 +153,41 @@ paths:
       operationId: getStudiesEnums
       x-operation-id-source: derived
 components:
+  parameters:
+    Format:
+      name: format
+      in: query
+      description: Response format
+      schema:
+        type: string
+        enum:
+        - json
+        - csv
+        default: json
+    PageSize:
+      name: pageSize
+      in: query
+      schema:
+        type: integer
+        default: 10
+        maximum: 1000
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of study fields to return
+      schema:
+        type: string
+    Query:
+      name: query.term
+      in: query
+      description: Free-text search term
+      schema:
+        type: string
+    PageToken:
+      name: pageToken
+      in: query
+      schema:
+        type: string
   schemas:
     Study:
       type: object
@@ -174,38 +209,3 @@ components:
           type: string
         totalCount:
           type: integer
-  parameters:
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of study fields to return
-      schema:
-        type: string
-    Format:
-      name: format
-      in: query
-      description: Response format
-      schema:
-        type: string
-        enum:
-        - json
-        - csv
-        default: json
-    PageSize:
-      name: pageSize
-      in: query
-      schema:
-        type: integer
-        default: 10
-        maximum: 1000
-    Query:
-      name: query.term
-      in: query
-      description: Free-text search term
-      schema:
-        type: string
-    PageToken:
-      name: pageToken
-      in: query
-      schema:
-        type: string
