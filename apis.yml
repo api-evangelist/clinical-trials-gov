@@ -37,7 +37,7 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/clinical-trials-gov.png
 url: https://raw.githubusercontent.com/api-evangelist/clinical-trials-gov/refs/heads/main/apis.yml
 created: '2024-01-01'
-modified: '2026-09-06'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 kind: government
 tags:
@@ -165,6 +165,8 @@ apis:
   - type: Overlay
     url: overlays/clinical-trials-gov-version-api-overlay.yaml
 common:
+  - url: https://clinicaltrials.gov/blog/
+    type: Blog
   - type: AgenticAccess
     url: agentic-access/clinical-trials-gov-agentic-access.yml
   - type: DomainSecurity
