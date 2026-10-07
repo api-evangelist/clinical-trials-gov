@@ -165,6 +165,8 @@ apis:
   - type: Overlay
     url: overlays/clinical-trials-gov-version-api-overlay.yaml
 common:
+  - type: Pricing
+    url: https://clinicaltrials.gov/about-site/terms-conditions
   - url: https://clinicaltrials.gov/blog/
     type: Blog
   - type: AgenticAccess
