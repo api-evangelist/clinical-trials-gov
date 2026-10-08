@@ -30,3 +30,16 @@ plans:
     "ClinicalTrials.gov data are available to all requesters, both within and outside the
     United States, at no charge." — https://clinicaltrials.gov/about-site/terms-conditions
     (probed 2026-09-06, HTTP 200)
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - metered
+  units: []
+  plans:
+  - name: Public access
+    access: other
+    model: metered
+    model_how: derived
+    units: []
+    periods: []
