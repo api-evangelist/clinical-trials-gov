@@ -1,0 +1,50 @@
+edges:
+- partner_name: identifiers.org registry (resources)
+  partner: null
+  partner_match: register
+  type: register
+  direction: partner-built
+  channel: standard-directory
+  relationship: standard-participant
+  evidence: https://registry.identifiers.org/registry
+  match:
+    method: domain
+    domain: clinicaltrials.gov
+    seen_as:
+    - resolution urlPattern
+    - resource home
+    registered_as:
+    - National Library of Medicine and ClinicalTrials.gov, Maryland
+  life_sciences:
+    register: idorg
+    listings:
+    - prefix: clinicaltrials
+      mir: MIR:00100179
+      resource: ClinicalTrials.gov at NIH
+      official: true
+    listings_total: 1
+    signals:
+    - clinicaltrials
+  contract_reference:
+    register: identifiers.org registry (resources)
+    spec_file: null
+    role: identifiers-resource
+    registered_name: National Library of Medicine and ClinicalTrials.gov, Maryland
+    register_id: National Library of Medicine and ClinicalTrials.gov, Maryland
+    matched_domain: clinicaltrials.gov
+    detected_by: sweep-life-sciences.py
+    detected: '2026-10-15'
+  detected_by: sweep-life-sciences.py
+  first_seen: '2026-10-15'
+generated: '2026-10-15'
+method: searched
+source:
+- https://bio.tools/api/tool/?format=json&toolType=%22Web%20API%22&page=1
+- https://registry.api.identifiers.org/resolutionApi/getResolverDataset
+- https://registry.ga4gh.org/v1/implementations
+- https://registry.ga4gh.org/v1/services
+checked:
+- https://bio.tools/api/tool/?format=json&toolType=%22Web%20API%22&page=1
+- https://registry.api.identifiers.org/resolutionApi/getResolverDataset
+- https://registry.ga4gh.org/v1/implementations
+- https://registry.ga4gh.org/v1/services
