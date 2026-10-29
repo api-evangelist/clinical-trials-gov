@@ -1,4 +1,4 @@
-# ClinicalTrials.gov (clinical-trials-gov)
+# ClinicalTrials.gov
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,123 +66,149 @@
 
 ClinicalTrials.gov is the U.S. National Institutes of Health (NIH) registry and results database of publicly and privately supported clinical studies of human participants conducted around the world. Operated by the National Library of Medicine (NLM), it provides a modern REST API (data-api v2) that returns study records, study metadata, search areas, and field definitions in JSON. The predecessor classic API remains available for legacy consumers but is being phased out in favor of the v2 API. Data is in the public domain and freely accessible without authentication.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/clinical-trials-gov/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/clinical-trials-gov/refs/heads/main/apis.yml)
+**Areas:** Clinical Trials · Government · Health · NIH · Open Data · Public Health · Research
 
-## Scope
+## ClinicalTrials.gov on APIs.io
 
-- **Type:** Index
+Everything profiled for ClinicalTrials.gov is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/clinical-trials-gov/](https://apis.io/providers/clinical-trials-gov/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (6)
 
-- Clinical Trials
-- Government
-- Health
-- NIH
-- Open Data
-- Public Health
-- Research
+- [ClinicalTrials.gov Classic API](https://apis.io/apis/clinical-trials-gov/classic-api/) — RETIRED. The Classic API was withdrawn in June 2024 and its endpoints now return HTTP 404 (probed 2026-09-06: /api/query/full_studies and /api/info/data_vrs…
+- [ClinicalTrials.gov Bulk Downloads](https://apis.io/apis/clinical-trials-gov/bulk-downloads/) — ClinicalTrials.gov provides bulk CSV and JSON downloads of the full study registry through the data-api download endpoints. These artifacts support…
+- [AACT Database](https://apis.io/apis/clinical-trials-gov/aact/) — AACT (Aggregate Analysis of ClinicalTrials.gov) is a publicly available relational database of all ClinicalTrials.gov study content maintained by the…
+- [ClinicalTrials.gov Stats API](https://apis.io/apis/clinical-trials-gov/clinical-trials-gov-stats-api/) — The Stats API from ClinicalTrials.gov — 3 operation(s) for stats.
+- [ClinicalTrials.gov Studies API](https://apis.io/apis/clinical-trials-gov/clinical-trials-gov-studies-api/) — The Studies API from ClinicalTrials.gov — 5 operation(s) for studies.
+- [ClinicalTrials.gov Version API](https://apis.io/apis/clinical-trials-gov/clinical-trials-gov-version-api/) — The Version API from ClinicalTrials.gov — 1 operation(s) for version.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-01-01
-- **Modified:** 2026-04-23
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### MCP servers (1)
 
-### ClinicalTrials.gov Data API v2
+Model Context Protocol servers that expose the API to agents.
 
-The ClinicalTrials.gov Data API v2 is the modern public REST interface to the NIH clinical-studies registry. It exposes study records, study metadata, search areas, study fields, version history, and statistics endpoints. Responses are JSON by default and the API is open and unauthenticated. The base URL is https://clinicaltrials.gov/api/v2 and operations include /studies, /studies/{nctId}, /studies/metadata, /studies/search-areas, /studies/enums, /version, and /stats.
+- [ClinicalTrials.gov Data API v2 (candidate MCP surface)](https://apis.io/servers/clinical-trials-gov/clinicaltrials-gov-data-api-v2-candidate-mcp-surface/)
 
-- **Human URL:** [https://clinicaltrials.gov/data-api/api](https://clinicaltrials.gov/data-api/api)
-- **Base URL:** `https://clinicaltrials.gov/api/v2`
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Clinical Trials
-- REST
-- Search
-- Studies
+- [Clinical Trials Gov Agentic Access](https://apis.io/agentic-access/clinical-trials-gov/clinical-trials-gov-agentic-access/)
 
-#### Properties
+#### JSON-LD (1)
 
-- [Documentation](https://clinicaltrials.gov/data-api/api)
-- [About](https://clinicaltrials.gov/data-api/about-api)
-- [OpenAPI](openapi/clinical-trials-gov-data-api-v2-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+Linked-data contexts for the provider's vocabulary.
 
-### ClinicalTrials.gov Classic API
+- [Clinical Trials Gov Context](https://apis.io/jsonld/clinical-trials-gov/clinical-trials-gov-context/)
 
-The Classic API is the legacy ClinicalTrials.gov interface that preceded the Data API v2 and exposes full-study, brief-study, and field-values endpoints with XML, JSON, and CSV responses. It is being deprecated in favor of the v2 REST API and remains online for backward compatibility while consumers migrate.
+#### Collections (4)
 
-- **Human URL:** [https://clinicaltrials.gov/data-api/api](https://clinicaltrials.gov/data-api/api)
-- **Base URL:** `https://clinicaltrials.gov/api`
+Postman and Open Collection request collections.
 
-#### Tags
+- [ClinicalTrials.gov Data API v2](https://apis.io/collections/clinical-trials-gov/open-clinical-trials-gov/)
+- [ClinicalTrials.gov Data API v2 Stats API](https://apis.io/collections/clinical-trials-gov/open-clinical-trials-gov-stats-api/)
+- [ClinicalTrials.gov Data API v2 Stats Studies API](https://apis.io/collections/clinical-trials-gov/open-clinical-trials-gov-studies-api/)
+- [ClinicalTrials.gov Data API v2 Stats Version API](https://apis.io/collections/clinical-trials-gov/open-clinical-trials-gov-version-api/)
 
-- Clinical Trials
-- Legacy
-- REST
+#### Overlays (3)
 
-#### Properties
+OpenAPI overlays, including conversational phrasing for each operation.
 
-- [Documentation](https://clinicaltrials.gov/data-api/api)
-- [Postman Collection](collections/clinical-trials-gov.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/clinical-trials-gov.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Clinical Trials Gov Stats Api Overlay](https://apis.io/overlays/clinical-trials-gov/clinical-trials-gov-stats-api-overlay/)
+- [Clinical Trials Gov Studies Api Overlay](https://apis.io/overlays/clinical-trials-gov/clinical-trials-gov-studies-api-overlay/)
+- [Clinical Trials Gov Version Api Overlay](https://apis.io/overlays/clinical-trials-gov/clinical-trials-gov-version-api-overlay/)
 
-### ClinicalTrials.gov Bulk Downloads
+#### Governance rules (1)
 
-ClinicalTrials.gov provides bulk CSV and JSON downloads of the full study registry through the data-api download endpoints. These artifacts support large-scale analytics, archival, and offline mirrors of the registry without making per-record API calls.
+Spectral rulesets for the provider's contracts.
 
-- **Human URL:** [https://clinicaltrials.gov/data-api/about-api/csv-download](https://clinicaltrials.gov/data-api/about-api/csv-download)
+- [ClinicalTrials.gov API Rules](https://apis.io/rules/clinical-trials-gov/clinical-trials-gov-rules/)
 
-#### Tags
+#### Security (2)
 
-- Bulk
-- Datasets
-- Open Data
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Properties
+- [Clinical Trials Gov Authentication](https://apis.io/security/clinical-trials-gov/clinical-trials-gov-authentication/)
+- [Clinical Trials Gov Domain Security](https://apis.io/security/clinical-trials-gov/clinical-trials-gov-domain-security/)
 
-- [Documentation](https://clinicaltrials.gov/data-api/about-api/csv-download)
-- [Postman Collection](collections/clinical-trials-gov.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/clinical-trials-gov.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Plans and pricing (1)
 
-### AACT Database
+Published plans, tiers and prices.
 
-AACT (Aggregate Analysis of ClinicalTrials.gov) is a publicly available relational database of all ClinicalTrials.gov study content maintained by the Clinical Trials Transformation Initiative (CTTI) at Duke University. It is updated daily and is widely used by researchers as a SQL-friendly mirror of the registry.
+- [Clinical Trials Gov Plans Pricing](https://apis.io/plans/clinical-trials-gov/clinical-trials-gov-plans-pricing/)
 
-- **Human URL:** [https://aact.ctti-clinicaltrials.org/](https://aact.ctti-clinicaltrials.org/)
+#### Rate limits (1)
 
-#### Tags
+Published request limits.
 
-- Analytics
-- Database
-- Postgres
-- Research
+- [Clinical Trials Gov Rate Limits](https://apis.io/rate-limits/clinical-trials-gov/clinical-trials-gov-rate-limits/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://aact.ctti-clinicaltrials.org/)
-- [Data  Dictionary](https://aact.ctti-clinicaltrials.org/data_dictionary)
-- [Postman Collection](collections/clinical-trials-gov.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/clinical-trials-gov.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://clinicaltrials.gov/)
-- [About](https://clinicaltrials.gov/about-site)
 - [Documentation](https://clinicaltrials.gov/data-api/api)
-- [Portal](https://clinicaltrials.gov/data-api)
-- [Glossary](https://clinicaltrials.gov/study-basics/glossary)
-- [News](https://clinicaltrials.gov/about-site/announcements)
-- [Help](https://clinicaltrials.gov/help)
-- [Privacy Policy](https://www.nlm.nih.gov/privacy.html)
-- [Terms of Service](https://clinicaltrials.gov/about-site/terms-conditions)
-- [Git Hub](https://github.com/clinicaltrialsgov)
-- [JSON-LD](json-ld/clinical-trials-gov-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Spectral Rules](rules/clinical-trials-gov-rules.yml) — [Spectral](https://docs.stoplight.io/docs/spectral)
-- [L L Ms Txt](https://clinicaltrials.gov/llms.txt)
+- [Getting started](https://clinicaltrials.gov/data-api/about-api)
+- [API reference](https://clinicaltrials.gov/data-api/api)
+- [Pricing](https://clinicaltrials.gov/about-site/terms-conditions)
+- [Support](https://support.nlm.nih.gov/)
+- [Changelog](https://clinicaltrials.gov/about-site/release-notes)
+- [Blog](https://clinicaltrials.gov/blog/)
+- [Terms of service](https://clinicaltrials.gov/about-site/terms-conditions)
+- [Privacy policy](https://www.nlm.nih.gov/privacy.html)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kinlane@gmail.com
+**Kin Score 36.4** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 65.2 |
+| Contract quality | 42.0 |
+| Contract governance | 31.8 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 30.4 |
+| Access clarity | 42.1 |
+
+**Agent readiness 24.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 20.6** — Government & Public Sector
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/clinical-trials-gov/](https://apis.io/providers/clinical-trials-gov/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for ClinicalTrials.gov: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/clinical-trials-gov/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
