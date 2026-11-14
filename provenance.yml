@@ -11,6 +11,15 @@ artifacts:
   capabilities/clinical-trials-gov-capability-edges.yml:
     method: unknown
     evidence: no authorship recorded
+  certification/observations-2026-11-10.jsonl:
+    method: unknown
+    evidence: no authorship recorded
+  certification/observations-2026-11-11.jsonl:
+    method: unknown
+    evidence: no authorship recorded
+  certification/status.yml:
+    method: unknown
+    evidence: no authorship recorded
   changelog/clinical-trials-gov-changelog.yml:
     method: searched
     evidence: declared in the artifact
@@ -44,9 +53,15 @@ artifacts:
   conventions/clinical-trials-gov-conventions.yml:
     method: searched
     evidence: declared in the artifact
+  data-license/clinical-trials-gov-data-license.yml:
+    method: harvested
+    evidence: declared in the artifact
   data-model/clinical-trials-gov-data-model.yml:
     method: unknown
     evidence: no authorship recorded
+  eligibility/clinical-trials-gov-eligibility.yml:
+    method: harvested
+    evidence: declared in the artifact
   errors/clinical-trials-gov-problem-types.yml:
     method: derived
     evidence: declared in the artifact
@@ -65,7 +80,7 @@ artifacts:
   kin/checks-2026-10-23T222754.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-11-02T082323.yml:
+  kin/checks-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -131,6 +146,9 @@ artifacts:
   kin/score-2026-11-02T082323.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-06T143934.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   lifecycle/clinical-trials-gov-lifecycle.yml:
     method: searched
     evidence: declared in the artifact
@@ -188,6 +206,9 @@ artifacts:
     evidence: declared in the artifact
   sla/clinical-trials-gov-sla.yml:
     method: generated
+    evidence: declared in the artifact
+  terms/clinical-trials-gov-terms-of-service.yml:
+    method: harvested
     evidence: declared in the artifact
   well-known/clinical-trials-gov-well-known.yml:
     method: unknown
